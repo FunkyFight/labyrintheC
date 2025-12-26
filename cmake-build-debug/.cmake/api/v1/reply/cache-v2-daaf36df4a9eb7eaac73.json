@@ -15,7 +15,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/addr2line.exe"
+			"value" : "C:/msys64/mingw64/bin/addr2line.exe"
 		},
 		{
 			"name" : "CMAKE_AR",
@@ -31,7 +31,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/ar.exe"
+			"value" : "C:/msys64/mingw64/bin/ar.exe"
 		},
 		{
 			"name" : "CMAKE_BUILD_TYPE",
@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "d:/Donn\u00e9es/Documents/stupid C projects/labyrinthe/cmake-build-debug"
+			"value" : "c:/Users/thean/CLionProjects/labyrintheC/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -67,7 +67,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "3"
+			"value" : "4"
 		},
 		{
 			"name" : "CMAKE_CACHE_MINOR_VERSION",
@@ -79,7 +79,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "29"
+			"value" : "1"
 		},
 		{
 			"name" : "CMAKE_CACHE_PATCH_VERSION",
@@ -91,7 +91,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "6"
+			"value" : "2"
 		},
 		{
 			"name" : "CMAKE_COLOR_DIAGNOSTICS",
@@ -115,7 +115,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "E:/otherssoft/CLion 2024.2.1/bin/cmake/win/x64/bin/cmake.exe"
+			"value" : "C:/Program Files/JetBrains/CLion 2025.3/bin/cmake/win/x64/bin/cmake.exe"
 		},
 		{
 			"name" : "CMAKE_CPACK_COMMAND",
@@ -127,7 +127,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "E:/otherssoft/CLion 2024.2.1/bin/cmake/win/x64/bin/cpack.exe"
+			"value" : "C:/Program Files/JetBrains/CLion 2025.3/bin/cmake/win/x64/bin/cpack.exe"
 		},
 		{
 			"name" : "CMAKE_CTEST_COMMAND",
@@ -139,7 +139,19 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "E:/otherssoft/CLion 2024.2.1/bin/cmake/win/x64/bin/ctest.exe"
+			"value" : "C:/Program Files/JetBrains/CLion 2025.3/bin/cmake/win/x64/bin/ctest.exe"
+		},
+		{
+			"name" : "CMAKE_CXX_COMPILER",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "No help, variable specified on the command line."
+				}
+			],
+			"type" : "UNINITIALIZED",
+			"value" : "C:/msys64/mingw64/bin/g++.exe"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER",
@@ -151,11 +163,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "C compiler"
+					"value" : "No help, variable specified on the command line."
 				}
 			],
-			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/cc.exe"
+			"type" : "UNINITIALIZED",
+			"value" : "C:/msys64/mingw64/bin/gcc.exe"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_AR",
@@ -171,7 +183,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/gcc-ar.exe"
+			"value" : "C:/msys64/mingw64/bin/gcc-ar.exe"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_RANLIB",
@@ -187,7 +199,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/gcc-ranlib.exe"
+			"value" : "C:/msys64/mingw64/bin/gcc-ranlib.exe"
 		},
 		{
 			"name" : "CMAKE_C_FLAGS",
@@ -299,7 +311,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/dlltool.exe"
+			"value" : "C:/msys64/mingw64/bin/dlltool.exe"
 		},
 		{
 			"name" : "CMAKE_EXECUTABLE_FORMAT",
@@ -394,22 +406,6 @@
 			"value" : ""
 		},
 		{
-			"name" : "CMAKE_EXPORT_COMPILE_COMMANDS",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Enable/Disable output of compile commands during generation."
-				}
-			],
-			"type" : "BOOL",
-			"value" : ""
-		},
-		{
 			"name" : "CMAKE_EXTRA_GENERATOR",
 			"properties" : 
 			[
@@ -431,7 +427,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/Donn\u00e9es/Documents/stupid C projects/labyrinthe/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "C:/Users/thean/CLionProjects/labyrintheC/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -443,7 +439,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "Ninja"
+			"value" : "MinGW Makefiles"
 		},
 		{
 			"name" : "CMAKE_GENERATOR_INSTANCE",
@@ -503,7 +499,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Donn\u00e9es/Documents/stupid C projects/labyrinthe"
+			"value" : "C:/Users/thean/CLionProjects/labyrintheC"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -531,19 +527,35 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/ld.exe"
+			"value" : "C:/msys64/mingw64/bin/ld.exe"
+		},
+		{
+			"name" : "CMAKE_LIST_FILE_NAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Name of CMakeLists files to read"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "CMakeLists.txt"
 		},
 		{
 			"name" : "CMAKE_MAKE_PROGRAM",
 			"properties" : 
 			[
 				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
 					"name" : "HELPSTRING",
-					"value" : "make program"
+					"value" : "Path to a program."
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "E:/otherssoft/CLion 2024.2.1/bin/ninja/win/x64/ninja.exe"
+			"value" : "C:/msys64/mingw64/bin/mingw32-make.exe"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -639,7 +651,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/nm.exe"
+			"value" : "C:/msys64/mingw64/bin/nm.exe"
 		},
 		{
 			"name" : "CMAKE_NUMBER_OF_MAKEFILES",
@@ -667,7 +679,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/objcopy.exe"
+			"value" : "C:/msys64/mingw64/bin/objcopy.exe"
 		},
 		{
 			"name" : "CMAKE_OBJDUMP",
@@ -683,7 +695,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/objdump.exe"
+			"value" : "C:/msys64/mingw64/bin/objdump.exe"
 		},
 		{
 			"name" : "CMAKE_PLATFORM_INFO_INITIALIZED",
@@ -696,6 +708,18 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "1"
+		},
+		{
+			"name" : "CMAKE_PROJECT_COMPAT_VERSION",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_PROJECT_DESCRIPTION",
@@ -747,7 +771,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/ranlib.exe"
+			"value" : "C:/msys64/mingw64/bin/ranlib.exe"
 		},
 		{
 			"name" : "CMAKE_RC_COMPILER",
@@ -763,7 +787,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/windres.exe"
+			"value" : "C:/msys64/mingw64/bin/windres.exe"
 		},
 		{
 			"name" : "CMAKE_RC_COMPILER_WORKS",
@@ -871,7 +895,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/readelf.exe"
+			"value" : "C:/msys64/mingw64/bin/readelf.exe"
 		},
 		{
 			"name" : "CMAKE_ROOT",
@@ -883,7 +907,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "E:/otherssoft/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29"
+			"value" : "C:/Program Files/JetBrains/CLion 2025.3/bin/cmake/win/x64/share/cmake-4.1"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1007,7 +1031,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during the creation of static libraries during all build types."
+					"value" : "Flags used by the archiver during the creation of static libraries during all build types."
 				}
 			],
 			"type" : "STRING",
@@ -1023,7 +1047,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during the creation of static libraries during DEBUG builds."
+					"value" : "Flags used by the archiver during the creation of static libraries during DEBUG builds."
 				}
 			],
 			"type" : "STRING",
@@ -1039,7 +1063,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during the creation of static libraries during MINSIZEREL builds."
+					"value" : "Flags used by the archiver during the creation of static libraries during MINSIZEREL builds."
 				}
 			],
 			"type" : "STRING",
@@ -1055,7 +1079,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during the creation of static libraries during RELEASE builds."
+					"value" : "Flags used by the archiver during the creation of static libraries during RELEASE builds."
 				}
 			],
 			"type" : "STRING",
@@ -1071,7 +1095,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags used by the linker during the creation of static libraries during RELWITHDEBINFO builds."
+					"value" : "Flags used by the archiver during the creation of static libraries during RELWITHDEBINFO builds."
 				}
 			],
 			"type" : "STRING",
@@ -1091,7 +1115,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/strip.exe"
+			"value" : "C:/msys64/mingw64/bin/strip.exe"
 		},
 		{
 			"name" : "CMAKE_TAPI",
@@ -1135,7 +1159,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "[D:/Logiciel/msys2/mingw64/bin/pkg-config.exe][v2.5.1()]"
+			"value" : "[C:/msys64/mingw64/bin/pkg-config.exe][v2.5.1()]"
 		},
 		{
 			"name" : "GOBJECT_CFLAGS",
@@ -1147,7 +1171,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "-ID:/Logiciel/msys2/mingw64/bin/../include;-ID:/Logiciel/msys2/mingw64/bin/../include/glib-2.0;-ID:/Logiciel/msys2/mingw64/bin/../lib/glib-2.0/include"
+			"value" : "-IC:/msys64/mingw64/include;-IC:/msys64/mingw64/include/glib-2.0;-IC:/msys64/mingw64/lib/glib-2.0/include"
 		},
 		{
 			"name" : "GOBJECT_CFLAGS_I",
@@ -1195,7 +1219,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../include"
+			"value" : "C:/msys64/mingw64/include"
 		},
 		{
 			"name" : "GOBJECT_INCLUDE_DIRS",
@@ -1207,7 +1231,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../include;D:/Logiciel/msys2/mingw64/bin/../include/glib-2.0;D:/Logiciel/msys2/mingw64/bin/../lib/glib-2.0/include"
+			"value" : "C:/msys64/mingw64/include;C:/msys64/mingw64/include/glib-2.0;C:/msys64/mingw64/lib/glib-2.0/include"
 		},
 		{
 			"name" : "GOBJECT_LDFLAGS",
@@ -1219,7 +1243,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "-LD:/Logiciel/msys2/mingw64/bin/../lib;-lgobject-2.0;-lglib-2.0;-lintl"
+			"value" : "-LC:/msys64/mingw64/lib;-lgobject-2.0;-lglib-2.0;-lintl"
 		},
 		{
 			"name" : "GOBJECT_LDFLAGS_OTHER",
@@ -1243,7 +1267,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../lib"
+			"value" : "C:/msys64/mingw64/lib"
 		},
 		{
 			"name" : "GOBJECT_LIBRARIES",
@@ -1267,7 +1291,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../lib"
+			"value" : "C:/msys64/mingw64/lib"
 		},
 		{
 			"name" : "GOBJECT_LIBS",
@@ -1339,7 +1363,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/.."
+			"value" : "C:/msys64/mingw64"
 		},
 		{
 			"name" : "GOBJECT_STATIC_CFLAGS",
@@ -1351,7 +1375,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "-ID:/Logiciel/msys2/mingw64/bin/../include;-ID:/Logiciel/msys2/mingw64/bin/../include/glib-2.0;-ID:/Logiciel/msys2/mingw64/bin/../lib/glib-2.0/include"
+			"value" : "-IC:/msys64/mingw64/include;-IC:/msys64/mingw64/include/glib-2.0;-IC:/msys64/mingw64/lib/glib-2.0/include"
 		},
 		{
 			"name" : "GOBJECT_STATIC_CFLAGS_I",
@@ -1387,7 +1411,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../include;D:/Logiciel/msys2/mingw64/bin/../include/glib-2.0;D:/Logiciel/msys2/mingw64/bin/../lib/glib-2.0/include"
+			"value" : "C:/msys64/mingw64/include;C:/msys64/mingw64/include/glib-2.0;C:/msys64/mingw64/lib/glib-2.0/include"
 		},
 		{
 			"name" : "GOBJECT_STATIC_LDFLAGS",
@@ -1399,7 +1423,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "-LD:/Logiciel/msys2/mingw64/bin/../lib;-lgobject-2.0;-lglib-2.0;-lintl;-lws2_32;-lole32;-lwinmm;-lshlwapi;-luuid;-latomic;-lm;-lpcre2-8;-LD:/Logiciel/msys2/mingw64/bin/../lib/../lib;-lffi"
+			"value" : "-LC:/msys64/mingw64/lib;-lgobject-2.0;-lglib-2.0;-lintl;-lws2_32;-lole32;-lwinmm;-lshlwapi;-luuid;-latomic;-lm;-lpcre2-8;-LC:/msys64/mingw64/lib/../lib;-lffi"
 		},
 		{
 			"name" : "GOBJECT_STATIC_LDFLAGS_OTHER",
@@ -1447,7 +1471,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../lib;D:/Logiciel/msys2/mingw64/bin/../lib/../lib"
+			"value" : "C:/msys64/mingw64/lib;C:/msys64/mingw64/lib/../lib"
 		},
 		{
 			"name" : "GOBJECT_STATIC_LIBS",
@@ -1587,427 +1611,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/pkg-config.exe"
-		},
-		{
-			"name" : "SDL2_CFLAGS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "-ID:/Logiciel/msys2/mingw64/bin/../include;-ID:/Logiciel/msys2/mingw64/bin/../include/SDL2;-Dmain=SDL_main"
-		},
-		{
-			"name" : "SDL2_CFLAGS_I",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "SDL2_CFLAGS_OTHER",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "-Dmain=SDL_main"
-		},
-		{
-			"name" : "SDL2_FOUND",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "1"
-		},
-		{
-			"name" : "SDL2_INCLUDEDIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../include"
-		},
-		{
-			"name" : "SDL2_INCLUDE_DIRS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../include;D:/Logiciel/msys2/mingw64/bin/../include/SDL2"
-		},
-		{
-			"name" : "SDL2_LDFLAGS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "-LD:/Logiciel/msys2/mingw64/bin/../lib;-lmingw32;-mwindows;-lSDL2main;-lSDL2"
-		},
-		{
-			"name" : "SDL2_LDFLAGS_OTHER",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "-mwindows"
-		},
-		{
-			"name" : "SDL2_LIBDIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../lib"
-		},
-		{
-			"name" : "SDL2_LIBRARIES",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "mingw32;SDL2main;SDL2"
-		},
-		{
-			"name" : "SDL2_LIBRARY_DIRS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../lib"
-		},
-		{
-			"name" : "SDL2_LIBS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "SDL2_LIBS_L",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "SDL2_LIBS_OTHER",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "SDL2_LIBS_PATHS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "SDL2_MODULE_NAME",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "sdl2"
-		},
-		{
-			"name" : "SDL2_PREFIX",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/.."
-		},
-		{
-			"name" : "SDL2_STATIC_CFLAGS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "-ID:/Logiciel/msys2/mingw64/bin/../include;-ID:/Logiciel/msys2/mingw64/bin/../include/SDL2;-Dmain=SDL_main"
-		},
-		{
-			"name" : "SDL2_STATIC_CFLAGS_I",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "SDL2_STATIC_CFLAGS_OTHER",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "-Dmain=SDL_main"
-		},
-		{
-			"name" : "SDL2_STATIC_INCLUDE_DIRS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../include;D:/Logiciel/msys2/mingw64/bin/../include/SDL2"
-		},
-		{
-			"name" : "SDL2_STATIC_LDFLAGS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "-LD:/Logiciel/msys2/mingw64/bin/../lib;-lmingw32;-mwindows;-lSDL2main;-lSDL2;-lm;-lkernel32;-luser32;-lgdi32;-lwinmm;-limm32;-lole32;-loleaut32;-lversion;-luuid;-ladvapi32;-lsetupapi;-lshell32;-ldinput8"
-		},
-		{
-			"name" : "SDL2_STATIC_LDFLAGS_OTHER",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "-mwindows"
-		},
-		{
-			"name" : "SDL2_STATIC_LIBDIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "SDL2_STATIC_LIBRARIES",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "mingw32;SDL2main;SDL2;m;kernel32;user32;gdi32;winmm;imm32;ole32;oleaut32;version;uuid;advapi32;setupapi;shell32;dinput8"
-		},
-		{
-			"name" : "SDL2_STATIC_LIBRARY_DIRS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../lib"
-		},
-		{
-			"name" : "SDL2_STATIC_LIBS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "SDL2_STATIC_LIBS_L",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "SDL2_STATIC_LIBS_OTHER",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "SDL2_STATIC_LIBS_PATHS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "SDL2_VERSION",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "2.32.10"
-		},
-		{
-			"name" : "SDL2_sdl2_INCLUDEDIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "SDL2_sdl2_LIBDIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "SDL2_sdl2_PREFIX",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "SDL2_sdl2_VERSION",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
+			"value" : "C:/msys64/mingw64/bin/pkg-config.exe"
 		},
 		{
 			"name" : "SDL3_CFLAGS",
@@ -2019,7 +1623,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "-ID:/Logiciel/msys2/mingw64/bin/../include"
+			"value" : "-IC:/msys64/mingw64/include"
 		},
 		{
 			"name" : "SDL3_CFLAGS_I",
@@ -2067,7 +1671,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../include"
+			"value" : "C:/msys64/mingw64/include"
 		},
 		{
 			"name" : "SDL3_INCLUDE_DIRS",
@@ -2079,7 +1683,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../include"
+			"value" : "C:/msys64/mingw64/include"
 		},
 		{
 			"name" : "SDL3_LDFLAGS",
@@ -2091,7 +1695,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "-LD:/Logiciel/msys2/mingw64/bin/../lib;-lSDL3;-mwindows"
+			"value" : "-LC:/msys64/mingw64/lib;-lSDL3;-mwindows"
 		},
 		{
 			"name" : "SDL3_LDFLAGS_OTHER",
@@ -2115,7 +1719,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../lib"
+			"value" : "C:/msys64/mingw64/lib"
 		},
 		{
 			"name" : "SDL3_LIBRARIES",
@@ -2139,7 +1743,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../lib"
+			"value" : "C:/msys64/mingw64/lib"
 		},
 		{
 			"name" : "SDL3_LIBS",
@@ -2211,7 +1815,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/.."
+			"value" : "C:/msys64/mingw64"
 		},
 		{
 			"name" : "SDL3_STATIC_CFLAGS",
@@ -2223,7 +1827,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "-ID:/Logiciel/msys2/mingw64/bin/../include"
+			"value" : "-IC:/msys64/mingw64/include"
 		},
 		{
 			"name" : "SDL3_STATIC_CFLAGS_I",
@@ -2259,7 +1863,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../include"
+			"value" : "C:/msys64/mingw64/include"
 		},
 		{
 			"name" : "SDL3_STATIC_LDFLAGS",
@@ -2271,7 +1875,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "-LD:/Logiciel/msys2/mingw64/bin/../lib;-lSDL3;-mwindows;-lm;-lkernel32;-luser32;-lgdi32;-lwinmm;-limm32;-lole32;-loleaut32;-lversion;-luuid;-ladvapi32;-lsetupapi;-lshell32;-ldinput8"
+			"value" : "-LC:/msys64/mingw64/lib;-lSDL3;-mwindows;-lm;-lkernel32;-luser32;-lgdi32;-lwinmm;-limm32;-lole32;-loleaut32;-lversion;-luuid;-ladvapi32;-lsetupapi;-lshell32;-ldinput8"
 		},
 		{
 			"name" : "SDL3_STATIC_LDFLAGS_OTHER",
@@ -2319,7 +1923,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../lib"
+			"value" : "C:/msys64/mingw64/lib"
 		},
 		{
 			"name" : "SDL3_STATIC_LIBS",
@@ -2430,18 +2034,6 @@
 			"value" : ""
 		},
 		{
-			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "linker supports push/pop state"
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "TRUE"
-		},
-		{
 			"name" : "__pkg_config_arguments_GOBJECT",
 			"properties" : 
 			[
@@ -2452,18 +2044,6 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "REQUIRED;gobject-2.0"
-		},
-		{
-			"name" : "__pkg_config_arguments_SDL2",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "REQUIRED;sdl2"
 		},
 		{
 			"name" : "__pkg_config_arguments_SDL3",
@@ -2479,18 +2059,6 @@
 		},
 		{
 			"name" : "__pkg_config_checked_GOBJECT",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "1"
-		},
-		{
-			"name" : "__pkg_config_checked_SDL2",
 			"properties" : 
 			[
 				{
@@ -2523,7 +2091,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/Donn\u00e9es/Documents/stupid C projects/labyrinthe/cmake-build-debug"
+			"value" : "C:/Users/thean/CLionProjects/labyrintheC/cmake-build-debug"
 		},
 		{
 			"name" : "labyrinthe_IS_TOP_LEVEL",
@@ -2547,7 +2115,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "D:/Donn\u00e9es/Documents/stupid C projects/labyrinthe"
+			"value" : "C:/Users/thean/CLionProjects/labyrintheC"
 		},
 		{
 			"name" : "pkgcfg_lib_GOBJECT_glib-2.0",
@@ -2563,7 +2131,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/lib/libglib-2.0.dll.a"
+			"value" : "C:/msys64/mingw64/lib/libglib-2.0.dll.a"
 		},
 		{
 			"name" : "pkgcfg_lib_GOBJECT_gobject-2.0",
@@ -2579,7 +2147,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/lib/libgobject-2.0.dll.a"
+			"value" : "C:/msys64/mingw64/lib/libgobject-2.0.dll.a"
 		},
 		{
 			"name" : "pkgcfg_lib_GOBJECT_intl",
@@ -2595,55 +2163,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/lib/libintl.dll.a"
-		},
-		{
-			"name" : "pkgcfg_lib_SDL2_SDL2",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a library."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/lib/libSDL2.dll.a"
-		},
-		{
-			"name" : "pkgcfg_lib_SDL2_SDL2main",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a library."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/lib/libSDL2main.a"
-		},
-		{
-			"name" : "pkgcfg_lib_SDL2_mingw32",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a library."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/lib/libmingw32.a"
+			"value" : "C:/msys64/mingw64/lib/libintl.dll.a"
 		},
 		{
 			"name" : "pkgcfg_lib_SDL3_SDL3",
@@ -2659,7 +2179,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Logiciel/msys2/mingw64/lib/libSDL3.dll.a"
+			"value" : "C:/msys64/mingw64/lib/libSDL3.dll.a"
 		},
 		{
 			"name" : "prefix_result",
@@ -2671,7 +2191,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Logiciel/msys2/mingw64/bin/../lib"
+			"value" : "C:/msys64/mingw64/lib"
 		}
 	],
 	"kind" : "cache",
