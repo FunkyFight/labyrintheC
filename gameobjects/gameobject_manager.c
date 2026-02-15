@@ -11,7 +11,6 @@ void GameObjectManager_AddGameObject(struct Game *g, void *gameObjectContainer) 
     if(g->gameobjects == NULL) return;
 
     g_array_append_vals(g->gameobjects, &gameObjectContainer, 1);
-    printf("Ajout d'un GameObject. J'ai maintenant %d gameobjects", g->gameobjects->len);
 
 
 }
@@ -34,6 +33,21 @@ void GameObjectManager_RemoveGameObject(struct Game *g, void *gameObjectContaine
     if(contains == -1) return;
 
     g_array_remove_index(g->gameobjects, contains);
+}
+
+void GameObjectManager_RemoveAllGameObjectsOfType(struct Game *g, char* type)
+{
+    for(guint i = 0; i < g->gameobjects->len; i++)
+    {
+        void* concrete = g_array_index(g->gameobjects, void*, i);
+        struct GameObject* gameObject = GameObjectManager_GetGameObject(concrete);
+
+        if(gameObject->type == type)
+        {
+            g_array_remove_index(g->gameobjects, i);
+            gameObject->destroy_game_object(concrete);
+        }
+    }
 }
 
 

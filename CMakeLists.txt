@@ -22,6 +22,9 @@ add_executable(labyrinthe main.c
         gameobjects/gameobject_manager.h
         business/nodes/labyrinthe_node.c
         business/nodes/labyrinthe_node.h
+        facade/GameFacade.c
+        facade/GameFacade.h
+        main.h
 )
 
 target_include_directories(labyrinthe PRIVATE

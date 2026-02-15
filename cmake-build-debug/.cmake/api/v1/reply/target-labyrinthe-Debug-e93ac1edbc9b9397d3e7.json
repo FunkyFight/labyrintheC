@@ -35,16 +35,21 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 40,
+				"line" : 43,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 27,
+				"line" : 30,
 				"parent" : 0
 			}
 		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
 	},
 	"compileGroups" : 
 	[
@@ -83,7 +88,8 @@
 				6,
 				8,
 				10,
-				12
+				12,
+				14
 			]
 		}
 	],
@@ -94,10 +100,6 @@
 		[
 			{
 				"fragment" : "-g",
-				"role" : "flags"
-			},
-			{
-				"fragment" : "",
 				"role" : "flags"
 			},
 			{
@@ -132,6 +134,29 @@
 		],
 		"language" : "C"
 	},
+	"linkLibraries" : 
+	[
+		{
+			"backtrace" : 2,
+			"fragment" : "gobject-2.0"
+		},
+		{
+			"backtrace" : 2,
+			"fragment" : "glib-2.0"
+		},
+		{
+			"backtrace" : 2,
+			"fragment" : "intl"
+		},
+		{
+			"backtrace" : 2,
+			"fragment" : "SDL3"
+		},
+		{
+			"backtrace" : 2,
+			"fragment" : "rpcrt4"
+		}
+	],
 	"name" : "labyrinthe",
 	"nameOnDisk" : "labyrinthe.exe",
 	"paths" : 
@@ -151,7 +176,8 @@
 				6,
 				8,
 				10,
-				12
+				12,
+				14
 			]
 		},
 		{
@@ -164,7 +190,9 @@
 				7,
 				9,
 				11,
-				13
+				13,
+				15,
+				16
 			]
 		}
 	],
@@ -245,6 +273,22 @@
 		{
 			"backtrace" : 1,
 			"path" : "business/nodes/labyrinthe_node.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "facade/GameFacade.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "facade/GameFacade.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "main.h",
 			"sourceGroupIndex" : 1
 		}
 	],

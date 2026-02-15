@@ -15,7 +15,7 @@ struct GameObjectLabyrintheCell {
 };
 
 struct GameObjectLabyrintheCell* GameObject_LabyrintheCell_Create(struct Game *game, float x, float y, float c, SDL_Color color, char valueChar);
-void GameObject_LabyrintheCell_Destroy(struct GameObjectLabyrintheCell *cell);
+void GameObject_LabyrintheCell_Destroy(void *gameObjectContainer);
 void GameObject_LabyrintheCell_Draw(void *gameObjectContainer);
 
 
