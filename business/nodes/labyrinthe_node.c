@@ -15,6 +15,22 @@ struct LabyrintheNode* LabyrintheNode_Create() {
     return node;
 }
 
+struct LabyrintheNode* LabyrintheNode_CreateCoords(int x, int y, int travel_cost) {
+    struct LabyrintheNode* node;
+    node = malloc(sizeof(struct LabyrintheNode));
+
+    node->north = NULL;
+    node->south = NULL;
+    node->east = NULL;
+    node->west = NULL;
+    node->visited = false;
+    node->x = x;
+    node->y = y;
+    node->travel_cost = travel_cost;
+
+    return node;
+}
+
 void LabyrintheNode_Destroy(struct LabyrintheNode* node) {
     if(node->north != NULL) LabyrintheNode_Destroy(node->north);
     if(node->south != NULL) LabyrintheNode_Destroy(node->south);
