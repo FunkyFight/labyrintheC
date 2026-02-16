@@ -5,6 +5,7 @@
 #ifndef LABYRINTHE_LABYRINTHE_NODE_H
 #define LABYRINTHE_LABYRINTHE_NODE_H
 
-void Labyrinthe_InitTest5x5(struct Labyrinthe *laby);
+struct LabyrintheNode* LabyrintheNode_Create();
+void LabyrintheNode_Destroy(struct LabyrintheNode* node);
 
 #endif //LABYRINTHE_LABYRINTHE_NODE_H

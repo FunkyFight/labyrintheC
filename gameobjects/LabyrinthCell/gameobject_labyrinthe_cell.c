@@ -3,6 +3,7 @@
 //
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "gameobject_labyrinthe_cell.h"
 
 struct GameObjectLabyrintheCell* GameObject_LabyrintheCell_Create(struct Game *game, float x, float y, float c, SDL_Color color, char valueChar) {
@@ -21,6 +22,8 @@ struct GameObjectLabyrintheCell* GameObject_LabyrintheCell_Create(struct Game *g
     gameObject->y = y;
     UuidCreate(&gameObject->guid);
     gameObject->draw_game_object = (void (*)(void *)) GameObject_LabyrintheCell_Draw;
+    gameObject->destroy_game_object = (void (*)(void *)) GameObject_LabyrintheCell_Destroy;
+    gameObject->type = "CELL";
 
 
     cell->gameObject = gameObject;
@@ -31,7 +34,9 @@ struct GameObjectLabyrintheCell* GameObject_LabyrintheCell_Create(struct Game *g
     return cell;
 }
 
-void GameObject_LabyrintheCell_Destroy(struct GameObjectLabyrintheCell *cell) {
+void GameObject_LabyrintheCell_Destroy(void* gameObjectContainer) {
+    struct GameObjectLabyrintheCell *cell = (struct GameObjectLabyrintheCell *) gameObjectContainer;
+
     free(cell->gameObject);
     free(cell);
 }

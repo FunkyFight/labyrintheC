@@ -19,7 +19,9 @@
 // Types de noeuds dans le labyrinthe
 enum LabyrintheNodeType {
     CELL, // Cellule normale où on peut marcher
-    WALL // Mur infranchissable
+    WALL, // Mur infranchissable
+    START, // Départ
+    END // Arrivée
 };
 
 // Structure d'un noeud de labyrinthe. Contient les voisins, le type, le coût en voyage...
@@ -33,6 +35,8 @@ struct LabyrintheNode {
 
     enum LabyrintheNodeType type;
     int travel_cost;
+
+    bool visited;
 };
 
 // Labyrinthe
@@ -42,7 +46,7 @@ struct Labyrinthe {
 
     int width, height; // Taille du labyrinthe
 
-    struct LabyrintheNode firstNode; // Premier noeud du labyrinthe
+    struct LabyrintheNode* firstNode; // Premier noeud du labyrinthe
 };
 
 /**
@@ -63,7 +67,9 @@ struct GameObject {
     struct Game *game;
     float x, y;
     void (*draw_game_object)(void *g);
+    void (*destroy_game_object)(void *g);
     void (*event_on_click)(void *g);
+    char* type;
 };
 
 struct BaseGameObject {

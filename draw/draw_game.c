@@ -11,10 +11,14 @@
 static GArray *renderable_gameobjects;
 
 void draw_init(struct Game *g) {
+    /*
     struct SDL_Color cellColor = {39, 245, 53, 255};
     struct GameObjectLabyrintheCell *cell = GameObject_LabyrintheCell_Create(g, 400, 300, 50, cellColor, '\0');
 
-    GameObjectManager_AddGameObject(g, cell);
+    if (cell != NULL) {
+        GameObjectManager_AddGameObject(g, cell);
+    }
+    */
 
 }
 
@@ -34,7 +38,9 @@ void draw_game(struct Game *g) {
         void* concrete = g_array_index(gameObjects, void*, i);
         struct GameObject *gameObject = GameObjectManager_GetGameObject(concrete);
 
-        gameObject->draw_game_object(concrete);
+        if (gameObject != NULL && gameObject->draw_game_object != NULL) {
+            gameObject->draw_game_object(concrete);
+        }
     }
 
     SDL_RenderPresent(g->renderer);

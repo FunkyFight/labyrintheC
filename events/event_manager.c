@@ -6,10 +6,10 @@ bool event_manager_emit_event(struct Game *g) {
 
     switch(type) {
         default:
-            break;
+            return false;
 
         case SDL_EVENT_QUIT:
             event_on_quit(g);
-            break;
+            return true;
     }
 }
