@@ -49,6 +49,15 @@ struct Labyrinthe {
     struct LabyrintheNode* firstNode; // Premier noeud du labyrinthe
 };
 
+struct LabyrintheCases {
+    char *filePath;
+    char *name;
+
+    int width, height; // Taille du labyrinthe
+
+    struct LabyrintheNode* nodes[];
+};
+
 /**
  * TYPES POUR LA FENÊTRE
  */
