@@ -32,6 +32,7 @@ struct LabyrintheNode {
     struct LabyrintheNode* west;
 
     int x, y;
+    SDL_Color color;
 
     enum LabyrintheNodeType type;
     int travel_cost;
