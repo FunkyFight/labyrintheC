@@ -5,7 +5,7 @@ PS: Tout les retours sont évidemment des pointeurs
 ## Génération :
 
 Pour obtenir une liste de noeuds générées, il suffit d'appeler la fonction
-`fullFillLabyrintheGeneration(int height,int width)` ou il suffit de rentrer la taille du labyrinthe souhaité.
+`fullFillLabyrintheGeneration(int height,int width,int isPerfect)` ou il suffit de rentrer la taille du labyrinthe souhaité ainsi que si le labyrinthe doit être un labyrinthe parfait.
 
 Cette fonction renvoie un objet `ListNode` contenant toutes les `LabyrintheNode` necéssaires pour chacunes des cases du labyrinthe
 de la forme : [chemins,murs]
@@ -55,11 +55,12 @@ Fonction renvoyant un `ListNode` ne contenant que les chemins 'parcourables' du 
 
 Ne requière qu'un `LabyrintheNode` de départ ainsi qu'une taille
 
-### Fonction `FillWithWalls(ListNode* chemins, int height, int width)`
+### Fonction `FillWithWalls(ListNode* chemins, int height, int width,int isPerfect)`
 
 Considère que la liste 'chemins' est une la liste des chemins choisit comme étant 'parcourables' du labyrinthe, soit la liste générer par `rdfsGeneration`.
 
 Renvoie la liste pour toutes les coordonnées dans l'intervale [(O,width),(0,height)] n'etant pas parmis 'chemins' des `LabyrintheNode` ayant pour coût "9999"
+Si le labyrinthe souhaité est imparfait, chaque mur à 11% de chance de devenir un chemin à la place.
 
 
 ### Fonction `containLabyrintheNode(ListNode* l,LabyrintheNode* n)`

@@ -80,21 +80,26 @@ int roadExists(ListNode* chemins,int x,int y) {
     return 0;
 }
 
-ListNode* FillWithWalls(ListNode* chemins, int height, int width) {
+ListNode* FillWithWalls(ListNode* chemins, int height, int width, int isPerfect) {
     ListNode* wallList = newListNode(10);
+    srand(time(NULL));
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             if (!roadExists(chemins,i,j)) {
-                addToListNode(wallList,LabyrintheNode_CreateCoords(j,i,9999));
+                if (!isPerfect && (rand() % 9 == 0)) {
+                    addToListNode(wallList,LabyrintheNode_CreateCoords(j,i,randomTravelCost()));
+                }else {
+                    addToListNode(wallList,LabyrintheNode_CreateCoords(j,i,9999));
+                }
             }
         }
     }
     return wallList;
 }
 
-ListNode* fullFillLabyrintheGeneration(int height,int width) {
+ListNode* fullFillLabyrintheGeneration(int height,int width,int isPerfect) {
     ListNode* chemins = rdfsGeneration(LabyrintheNode_CreateCoords(0,0,randomTravelCost()),height,width);
-    ListNode* wallList = FillWithWalls(chemins,height,width);
+    ListNode* wallList = FillWithWalls(chemins,height,width,isPerfect);
     for (int i = 0; i < wallList->size; i++) {
         addToListNode(chemins, wallList->nodeTab[i]);
     }
