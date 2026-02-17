@@ -5,9 +5,10 @@ PS: Tout les retours sont évidemment des pointeurs
 ## Génération :
 
 Pour obtenir une liste de noeuds générées, il suffit d'appeler la fonction
-`fullFillLabyrintheGeneration(int height,int width)` ou il suffit de rentrer la taille du labyrinthe souhaité. 
+`fullFillLabyrintheGeneration(int height,int width)` ou il suffit de rentrer la taille du labyrinthe souhaité.
 
 Cette fonction renvoie un objet `ListNode` contenant toutes les `LabyrintheNode` necéssaires pour chacunes des cases du labyrinthe
+de la forme : [chemins,murs]
 
 ## Utiliser les `ListNode` :
 
