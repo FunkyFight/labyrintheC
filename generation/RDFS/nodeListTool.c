@@ -2,14 +2,13 @@
 #include <stdlib.h>
 
 ListNode* newListNode(int startMaxSize) {
-    ListNode* l = (ListNode*)malloc(sizeof(ListNode));
+    ListNode* l = malloc(sizeof(ListNode));
     l->size = 0;
     l->maxSize = startMaxSize;
-    l->nodeTab = realloc(l->nodeTab, sizeof(ListNode) * startMaxSize);
+    l->nodeTab = malloc(sizeof(LabyrintheNode*) * startMaxSize);
     return l;
+}
 
-
-};
 
 
 
@@ -48,23 +47,26 @@ void freeListNode(ListNode* l) {
     free(l);
 };
 
-int isInNeighbors(LabyrintheNode* analysedNode,LabyrintheNode* n) {
-    LabyrintheNode* Neighbors[4] ;
-    Neighbors[0] = analysedNode->east;
-    Neighbors[1] = analysedNode->west;
-    Neighbors[2] = analysedNode->south;
-    Neighbors[3] = analysedNode->north;
-    for (int i = 0; i < 4; i++) {
-        LabyrintheNode* nghbr = Neighbors[i];
-        if (nghbr && nghbr == n) {
-            return 1;
-        }
-    }
+int isInNeighbors(LabyrintheNode* analysedNode, LabyrintheNode* n) {
+    if (!analysedNode || !n) return 0;
+
+    int dx = abs(analysedNode->x - n->x);
+    int dy = abs(analysedNode->y - n->y);
+
+    if (dx + dy == 1)
+        return 1;
+
     return 0;
-};
+}
+
 int isInNeighborsList(ListNode* l,LabyrintheNode* n) {
     for (int i = 0; i < l->size; i++) {
         if (isInNeighbors(l->nodeTab[i],n)) return 1;
     }
     return 0;
 };
+
+int isInLaby(LabyrintheNode* node,int height, int width) {
+    if (node == NULL) return 0;
+    if (node->x < height && node->y < width && node->x >= 0 && node->y >= 0) return 1;
+}

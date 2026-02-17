@@ -20,6 +20,7 @@ int containLabyrintheNode(ListNode* l,LabyrintheNode* n);
 void freeListNode(ListNode* l);
 int isInNeighbors(LabyrintheNode* analysedNode,LabyrintheNode* n);
 int isInNeighborsList(ListNode* l,LabyrintheNode* n);
+int isInLaby(LabyrintheNode* node,int height, int width);
 
 
 
