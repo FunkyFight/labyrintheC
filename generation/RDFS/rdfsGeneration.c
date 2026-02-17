@@ -7,7 +7,6 @@
 
 //50% DE CHANCES DE RENVOYER 1, 33% DE CHANCES DE RENVOYER 2 ET 17% DE CHANCES DE RENVOYER 3
 int randomTravelCost() {
-    srand(time(NULL));
     int r = rand() % 6;
     if (r < 3)
         return 1;
@@ -16,55 +15,65 @@ int randomTravelCost() {
     return 3;
 }
 
-
-
 //renvoie la liste des cases du chemins
 ListNode* rdfsGeneration(LabyrintheNode* nodeStart, int height, int width) {
     if (!isInLaby(nodeStart,height,width)) return NULL;
     ListNode* roadList = newListNode(10);
     ListNode* roadInTakeList = newListNode(10);
-    srand(time(NULL));
 
     LabyrintheNode* LastVisitedNode = nodeStart;
     addToListNode(roadList, LastVisitedNode);
     addToListNode(roadInTakeList, LastVisitedNode);
 
-    while ((LastVisitedNode->x != 0 || LastVisitedNode -> y != 0) || roadInTakeList->size > 0){
+    while (roadInTakeList->size > 0) {
         ListNode* possibilities = newListNode(4);
+        int dirs[4][2] = {
+            {LastVisitedNode->x + 1, LastVisitedNode->y},
+            {LastVisitedNode->x - 1, LastVisitedNode->y},
+            {LastVisitedNode->x, LastVisitedNode->y + 1},
+            {LastVisitedNode->x, LastVisitedNode->y - 1}
+        };
 
-        LabyrintheNode* Neighbors[4] ;
-        if (!LastVisitedNode->east) {
-            LastVisitedNode->east = LabyrintheNode_CreateCoords(LastVisitedNode->x + 1, LastVisitedNode->y,randomTravelCost());
-        }
-        if (!LastVisitedNode->west) {
-            LastVisitedNode->west = LabyrintheNode_CreateCoords(LastVisitedNode->x - 1, LastVisitedNode->y,randomTravelCost());
-        }
-        if (!LastVisitedNode->south) {
-            LastVisitedNode->south = LabyrintheNode_CreateCoords(LastVisitedNode->x, LastVisitedNode->y + 1,randomTravelCost());
-        }
-        if (!LastVisitedNode->north) {
-            LastVisitedNode->north = LabyrintheNode_CreateCoords(LastVisitedNode->x, LastVisitedNode->y - 1,randomTravelCost());
-        }
-        Neighbors[0] = LastVisitedNode->east;
-        Neighbors[1] = LastVisitedNode->west;
-        Neighbors[2] = LastVisitedNode->south;
-        Neighbors[3] = LastVisitedNode->north;
         for (int i = 0; i < 4; i++) {
-            LabyrintheNode* n = Neighbors[i];
-            if (n && !containLabyrintheNode(roadList,n)&& !isInNeighborsList(roadList,n) && isInLaby(n,height ,width)) {
-                addToListNode(possibilities,n);
+            int nx = dirs[i][0];
+            int ny = dirs[i][1];
+            int exists = 0;
+            for (int j = 0; j < roadList->size; j++) {
+                if (roadList->nodeTab[j]->x == nx && roadList->nodeTab[j]->y == ny) {
+                    exists = 1;
+                    break;
+                }
             }
+            if (exists || nx < 0 || ny < 0 || nx >= height || ny >= width) continue;
+
+            LabyrintheNode* temp = LabyrintheNode_CreateCoords(nx, ny, randomTravelCost());
+            int neighborCount = 0;
+            LabyrintheNode* neighbors[4] = {
+                LabyrintheNode_CreateCoords(nx+1, ny, 0),
+                LabyrintheNode_CreateCoords(nx-1, ny, 0),
+                LabyrintheNode_CreateCoords(nx, ny+1, 0),
+                LabyrintheNode_CreateCoords(nx, ny-1, 0)
+            };
+            for (int k = 0; k < 4; k++) {
+                for (int j = 0; j < roadList->size; j++) {
+                    if (roadList->nodeTab[j]->x == neighbors[k]->x && roadList->nodeTab[j]->y == neighbors[k]->y) {
+                        neighborCount++;
+                    }
+                }
+                free(neighbors[k]);
+            }
+            if (neighborCount == 1) addToListNode(possibilities, temp);
+            else free(temp);
         }
+
         if (possibilities->size == 0) {
             removeLastToListNode(roadInTakeList);
-            if (roadInTakeList->size > 0) {
-                LastVisitedNode = roadInTakeList->nodeTab[roadInTakeList->size-1];
-            }
-        }else {
-            int choise = rand()% possibilities->size;
+            if (roadInTakeList->size > 0) LastVisitedNode = roadInTakeList->nodeTab[roadInTakeList->size-1];
+        } else {
+            int choise = rand() % possibilities->size;
             LastVisitedNode = possibilities->nodeTab[choise];
-            addToListNode(roadList,LastVisitedNode);
-            addToListNode(roadInTakeList,LastVisitedNode);
+            addToListNode(roadList, LastVisitedNode);
+            addToListNode(roadInTakeList, LastVisitedNode);
         }
         freeListNode(possibilities);
     }
@@ -72,6 +81,7 @@ ListNode* rdfsGeneration(LabyrintheNode* nodeStart, int height, int width) {
     freeListNode(roadInTakeList);
     return roadList;
 }
+
 
 int roadExists(ListNode* chemins,int x,int y) {
     for (int i = 0; i < chemins->size; i++) {
@@ -82,14 +92,13 @@ int roadExists(ListNode* chemins,int x,int y) {
 
 ListNode* FillWithWalls(ListNode* chemins, int height, int width, int isPerfect) {
     ListNode* wallList = newListNode(10);
-    srand(time(NULL));
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             if (!roadExists(chemins,i,j)) {
                 if (!isPerfect && (rand() % 9 == 0)) {
-                    addToListNode(wallList,LabyrintheNode_CreateCoords(j,i,randomTravelCost()));
+                    addToListNode(wallList,LabyrintheNode_CreateCoords(i,j,randomTravelCost()));
                 }else {
-                    addToListNode(wallList,LabyrintheNode_CreateCoords(j,i,9999));
+                    addToListNode(wallList,LabyrintheNode_CreateCoords(i,j,9999));
                 }
             }
         }

@@ -47,26 +47,10 @@ void freeListNode(ListNode* l) {
     free(l);
 };
 
-int isInNeighbors(LabyrintheNode* analysedNode, LabyrintheNode* n) {
-    if (!analysedNode || !n) return 0;
-
-    int dx = abs(analysedNode->x - n->x);
-    int dy = abs(analysedNode->y - n->y);
-
-    if (dx + dy == 1)
-        return 1;
-
-    return 0;
-}
-
-int isInNeighborsList(ListNode* l,LabyrintheNode* n) {
-    for (int i = 0; i < l->size; i++) {
-        if (isInNeighbors(l->nodeTab[i],n)) return 1;
-    }
-    return 0;
-};
-
-int isInLaby(LabyrintheNode* node,int height, int width) {
+int isInLaby(LabyrintheNode* node, int height, int width) {
     if (node == NULL) return 0;
-    if (node->x < height && node->y < width && node->x >= 0 && node->y >= 0) return 1;
+    if (node->x >= 0 && node->x < width &&
+        node->y >= 0 && node->y < height) return 1;
+    return 0;
 }
+
