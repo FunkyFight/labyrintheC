@@ -77,3 +77,10 @@ Verifie que le `LabyrintheNode` possède bien des coordonnées dans l'intervale 
 Renvoie 1 si c'est le cas
 
 Sinon renvoie 0
+
+
+# Attention
+
+## Erreur DX DY
+
+Github peut afficher une erreur par rapport à un DX et un DY , cette erreur est a ignorer, le systeme se basant sur les coordonnées géométriques : donc x etant les lignes et y etant les colonnes.
