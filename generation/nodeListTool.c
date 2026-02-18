@@ -1,4 +1,4 @@
-#include "RDFS/nodeListTool.h"
+#include "nodeListTool.h"
 #include <stdlib.h>
 
 ListNode* newListNode(int startMaxSize) {

@@ -3,7 +3,6 @@
 
 #include "../nodeListTool.h"
 #include "../../business/nodes/labyrinthe_node.h"
-#include "../generation/nodeListTool.h"
 
 int randomTravelCost();
 
