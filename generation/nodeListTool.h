@@ -1,7 +1,7 @@
 #ifndef LABYRINTHE_NODELISTTOOL_H
 #define LABYRINTHE_NODELISTTOOL_H
 
-#include "../../types.h"
+#include "../types.h"
 //Je suis obligé de le faire car tu n'a pas mis de nom de déclaration
 struct LabyrintheNode;
 typedef struct LabyrintheNode LabyrintheNode;

@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-#include "nodeListTool.h"
+#include "../nodeListTool.h"
 #include "../../types.h"
 #include "../../business/nodes/labyrinthe_node.h"
 

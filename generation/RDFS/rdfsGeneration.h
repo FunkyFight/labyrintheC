@@ -1,8 +1,9 @@
 #ifndef RDFS_GENERATION_H
 #define RDFS_GENERATION_H
 
-#include "nodeListTool.h"
+#include "../nodeListTool.h"
 #include "../../business/nodes/labyrinthe_node.h"
+#include "../generation/nodeListTool.h"
 
 int randomTravelCost();
 
