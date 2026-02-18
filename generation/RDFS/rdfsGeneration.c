@@ -106,8 +106,11 @@ ListNode* FillWithWalls(ListNode* chemins, int height, int width, int isPerfect)
     return wallList;
 }
 
-ListNode* fullFillLabyrintheGeneration(int height,int width,int isPerfect) {
-    ListNode* chemins = rdfsGeneration(LabyrintheNode_CreateCoords(0,0,randomTravelCost()),height,width);
+ListNode* fullFillLabyrintheGeneration(int height,int width,int isPerfect, LabyrintheNode* starter) {
+    if (!starter) {
+        starter = LabyrintheNode_CreateCoords(0,0,randomTravelCost());
+    }
+    ListNode* chemins = rdfsGeneration(starter,height,width);
     ListNode* wallList = FillWithWalls(chemins,height,width,isPerfect);
     for (int i = 0; i < wallList->size; i++) {
         addToListNode(chemins, wallList->nodeTab[i]);

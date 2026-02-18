@@ -5,7 +5,8 @@ PS: Tout les retours sont évidemment des pointeurs
 ## Génération :
 
 Pour obtenir une liste de noeuds générées, il suffit d'appeler la fonction
-`fullFillLabyrintheGeneration(int height,int width,int isPerfect)` ou il suffit de rentrer la taille du labyrinthe souhaité ainsi que si le labyrinthe doit être un labyrinthe parfait.
+`fullFillLabyrintheGeneration(int height,int width,int isPerfect,LabyrintheNode* starter)` ou il suffit de rentrer la taille du labyrinthe souhaité ainsi que si le labyrinthe doit être un labyrinthe parfait.
+Starter est un `LabyrintheNode` qui est le node de départ de la génération, si celui ci est `NULL`, un `LabyrintheNode` auto-générer en 0,0 sera choisit comme starter.
 
 Cette fonction renvoie un objet `ListNode` contenant toutes les `LabyrintheNode` necéssaires pour chacunes des cases du labyrinthe
 de la forme : [chemins,murs]
