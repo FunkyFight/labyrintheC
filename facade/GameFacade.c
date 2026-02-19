@@ -6,50 +6,12 @@
 #include <stdio.h>
 #include "../business/nodes/labyrinthe_node.h"
 #include "../generation/RDFS/rdfsGeneration.h"
+#include "../utils/node_sort.h"
 
 static void GameFacade_ShowNode(struct Game* game, struct LabyrintheNode* node, int cellSx, int cellSy);
 static void GameFacade_ResetVisited(struct LabyrintheNode* node);
 static bool Labyrinthe_ValidateGrid(struct Labyrinthe* labyrinthe);
 static void Labyrinthe_FreeGrid(struct Labyrinthe* labyrinthe);
-
-void printRoad(ListNode* road) {
-    if (!road) return;
-
-    for (int i = 0; i < road->size; i++) {
-        LabyrintheNode* n = road->nodeTab[i];
-        printf("(%d,%d:%d) ", n->x, n->y, n->travel_cost);
-    }
-    printf("\n");
-}
-void printRoad2D(ListNode* road, int height, int width) {
-    if (!road) return;
-
-    int grid[height][width];
-
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            grid[y][x] = -1;
-        }
-    }
-
-    for (int i = 0; i < road->size; i++) {
-        LabyrintheNode* n = road->nodeTab[i];
-        if (n->x >= 0 && n->x < width && n->y >= 0 && n->y < height) {
-            grid[n->y][n->x] = n->travel_cost;
-        }
-    }
-
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            if (grid[y][x] == -1)
-                printf(" . ");
-            else
-                printf("%2d ", grid[y][x]);
-        }
-        printf("\n");
-    }
-}
-
 
 void DebugAndTest()
 {
@@ -58,26 +20,66 @@ void DebugAndTest()
      * Utilisez cette fonction pour faire des appels de fonctions de test. Tout ce que vous exécuterez ici sera exécutée par main().
      * Donc pas besoin de toucher au main !
      */
-    srand(time(NULL));
 
-    int height = 10;
-    int width = 10;
+    struct ListNode* listNode = fullFillLabyrintheGeneration(50, 50, 1, NULL);
+    struct LabyrintheNode* rootNode = GameFacade_Labyrinthe_Tab_To_Nodes(listNode);
 
-    //Les 2 fonctionnent
-    ListNode* road = fullFillLabyrintheGeneration(height, width,0,NULL);
-    //ListNode* road = fullFillLabyrintheGeneration(height, width,0,LabyrintheNode_CreateCoords(4,7,randomTravelCost()));
+    struct Labyrinthe labyrinthe = {
+        .firstNode = rootNode,
+        .width = 50,
+        .height = 50
+    };
 
-    printf("Affichage lineaire :\n");
-    printRoad(road);
-
-    printf("\nAffichage 2D :\n");
-    printRoad2D(road, height, width);
-
-    freeListNode(road);
-
-    struct Labyrinthe labyrinthe = {0};
     bool ok = Labyrinthe_ValidateGrid(&labyrinthe);
     GameFacade_ShowInstantlyLabyrinthe(&labyrinthe);
+}
+
+struct LabyrintheNode* GameFacade_Labyrinthe_Tab_To_Nodes(struct ListNode* listNodes)
+{
+    if(listNodes == NULL || listNodes->size == 0) return NULL;
+
+    // Connecter tous les nœuds en grille basé sur leurs coordonnées
+    for(int i = 0; i < listNodes->size; i++)
+    {
+        struct LabyrintheNode* current = listNodes->nodeTab[i];
+        if(current == NULL) continue;
+
+        // Chercher et connecter les voisins
+        for(int j = 0; j < listNodes->size; j++)
+        {
+            if(i == j) continue;
+            struct LabyrintheNode* other = listNodes->nodeTab[j];
+            if(other == NULL) continue;
+
+            // Voisin NORD (même x, y-1)
+            if(other->x == current->x && other->y == current->y - 1) {
+                current->north = other;
+            }
+            // Voisin SUD (même x, y+1)
+            else if(other->x == current->x && other->y == current->y + 1) {
+                current->south = other;
+            }
+            // Voisin OUEST (x-1, même y)
+            else if(other->x == current->x - 1 && other->y == current->y) {
+                current->west = other;
+            }
+            // Voisin EST (x+1, même y)
+            else if(other->x == current->x + 1 && other->y == current->y) {
+                current->east = other;
+            }
+        }
+    }
+
+    // Retourner le nœud (0,0) comme racine
+    for(int i = 0; i < listNodes->size; i++)
+    {
+        if(listNodes->nodeTab[i]->x == 0 && listNodes->nodeTab[i]->y == 0) {
+            return listNodes->nodeTab[i];
+        }
+    }
+
+    // Si pas de (0,0), retourner le premier nœud
+    return listNodes->nodeTab[0];
 }
 
 static bool Labyrinthe_ValidateGrid(struct Labyrinthe* labyrinthe) {
@@ -118,6 +120,7 @@ static bool Labyrinthe_ValidateGrid(struct Labyrinthe* labyrinthe) {
         struct LabyrintheNode* node = stack[--top];
         if(node == NULL) continue;
 
+        // Un noeud en dehors de [0..w-1]x[0..h-1] est invalide.
         if(node->x < 0 || node->x >= w || node->y < 0 || node->y >= h) {
             ok = false;
             continue;
@@ -125,6 +128,8 @@ static bool Labyrinthe_ValidateGrid(struct Labyrinthe* labyrinthe) {
 
         int idx = node->y * w + node->x;
         if(nodes[idx] != NULL) {
+            // On a déjà un noeud pour (x,y).
+            // Si le pointeur est différent, la structure n'est pas une vraie grille.
             if(nodes[idx] != node) ok = false;
             continue;
         }
