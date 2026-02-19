@@ -11,6 +11,7 @@ struct LabyrintheNode* LabyrintheNode_Create() {
     node->east = NULL;
     node->west = NULL;
     node->visited = false;
+    node->type = CELL; // Type par défaut
 
     return node;
 }
@@ -27,6 +28,13 @@ struct LabyrintheNode* LabyrintheNode_CreateCoords(int x, int y, int travel_cost
     node->x = x;
     node->y = y;
     node->travel_cost = travel_cost;
+
+    // Initialiser le type basé sur le travel_cost
+    if(travel_cost >= 9999) {
+        node->type = WALL;
+    } else {
+        node->type = CELL;
+    }
 
     return node;
 }

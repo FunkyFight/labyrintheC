@@ -25,6 +25,12 @@ add_executable(labyrinthe main.c
         facade/GameFacade.c
         facade/GameFacade.h
         main.h
+        generation/nodeListTool.c
+        generation/nodeListTool.h
+        generation/RDFS/rdfsGeneration.c
+        generation/RDFS/rdfsGeneration.h
+        utils/node_sort.c
+        utils/node_sort.h
 )
 
 target_include_directories(labyrinthe PRIVATE

@@ -5,17 +5,17 @@ ListNode* newListNode(int startMaxSize) {
     ListNode* l = malloc(sizeof(ListNode));
     l->size = 0;
     l->maxSize = startMaxSize;
-    l->nodeTab = malloc(sizeof(LabyrintheNode*) * startMaxSize);
+    l->nodeTab = malloc(sizeof(struct LabyrintheNode*) * startMaxSize);
     return l;
 }
 
 
 
 
-void addToListNode(ListNode* l, LabyrintheNode* n) {
+void addToListNode(ListNode* l, struct LabyrintheNode* n) {
     if (l->size >= l->maxSize) {
         l->maxSize ++;
-        l->nodeTab = realloc(l->nodeTab, sizeof(LabyrintheNode*) * l->maxSize);
+        l->nodeTab = realloc(l->nodeTab, sizeof(struct LabyrintheNode*) * l->maxSize);
     }
     l->nodeTab[l->size] = n;
     l->size++;
@@ -23,9 +23,9 @@ void addToListNode(ListNode* l, LabyrintheNode* n) {
 
 
 
-LabyrintheNode* removeLastToListNode(ListNode* l) {
+struct LabyrintheNode* removeLastToListNode(ListNode* l) {
     if (l->size == 0) return NULL;
-    LabyrintheNode* last = l->nodeTab[l->size - 1];
+    struct LabyrintheNode* last = l->nodeTab[l->size - 1];
     l->size--;
 
     return last;
@@ -33,7 +33,7 @@ LabyrintheNode* removeLastToListNode(ListNode* l) {
 
 
 
-int containLabyrintheNode(ListNode* l, LabyrintheNode* n) {
+int containLabyrintheNode(ListNode* l, struct LabyrintheNode* n) {
     for (int i = 0; i < l->size; i++) {
         if (l->nodeTab[i] == n) return 1;
     }
@@ -47,7 +47,7 @@ void freeListNode(ListNode* l) {
     free(l);
 };
 
-int isInLaby(LabyrintheNode* node, int height, int width) {
+int isInLaby(struct LabyrintheNode* node, int height, int width) {
     if (node == NULL) return 0;
     if (node->x >= 0 && node->x < width &&
         node->y >= 0 && node->y < height) return 1;

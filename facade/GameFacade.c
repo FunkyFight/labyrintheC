@@ -5,6 +5,8 @@
 #include "GameFacade.h"
 #include <stdio.h>
 #include "../business/nodes/labyrinthe_node.h"
+#include "../generation/RDFS/rdfsGeneration.h"
+#include "../utils/node_sort.h"
 
 static void GameFacade_ShowNode(struct Game* game, struct LabyrintheNode* node, int cellSx, int cellSy);
 static void GameFacade_ResetVisited(struct LabyrintheNode* node);
@@ -19,9 +21,65 @@ void DebugAndTest()
      * Donc pas besoin de toucher au main !
      */
 
-    struct Labyrinthe labyrinthe = {0};
+    struct ListNode* listNode = fullFillLabyrintheGeneration(50, 50, 1, NULL);
+    struct LabyrintheNode* rootNode = GameFacade_Labyrinthe_Tab_To_Nodes(listNode);
+
+    struct Labyrinthe labyrinthe = {
+        .firstNode = rootNode,
+        .width = 50,
+        .height = 50
+    };
+
     bool ok = Labyrinthe_ValidateGrid(&labyrinthe);
     GameFacade_ShowInstantlyLabyrinthe(&labyrinthe);
+}
+
+struct LabyrintheNode* GameFacade_Labyrinthe_Tab_To_Nodes(struct ListNode* listNodes)
+{
+    if(listNodes == NULL || listNodes->size == 0) return NULL;
+
+    // Connecter tous les nœuds en grille basé sur leurs coordonnées
+    for(int i = 0; i < listNodes->size; i++)
+    {
+        struct LabyrintheNode* current = listNodes->nodeTab[i];
+        if(current == NULL) continue;
+
+        // Chercher et connecter les voisins
+        for(int j = 0; j < listNodes->size; j++)
+        {
+            if(i == j) continue;
+            struct LabyrintheNode* other = listNodes->nodeTab[j];
+            if(other == NULL) continue;
+
+            // Voisin NORD (même x, y-1)
+            if(other->x == current->x && other->y == current->y - 1) {
+                current->north = other;
+            }
+            // Voisin SUD (même x, y+1)
+            else if(other->x == current->x && other->y == current->y + 1) {
+                current->south = other;
+            }
+            // Voisin OUEST (x-1, même y)
+            else if(other->x == current->x - 1 && other->y == current->y) {
+                current->west = other;
+            }
+            // Voisin EST (x+1, même y)
+            else if(other->x == current->x + 1 && other->y == current->y) {
+                current->east = other;
+            }
+        }
+    }
+
+    // Retourner le nœud (0,0) comme racine
+    for(int i = 0; i < listNodes->size; i++)
+    {
+        if(listNodes->nodeTab[i]->x == 0 && listNodes->nodeTab[i]->y == 0) {
+            return listNodes->nodeTab[i];
+        }
+    }
+
+    // Si pas de (0,0), retourner le premier nœud
+    return listNodes->nodeTab[0];
 }
 
 static bool Labyrinthe_ValidateGrid(struct Labyrinthe* labyrinthe) {
