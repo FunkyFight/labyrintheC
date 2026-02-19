@@ -16,12 +16,12 @@ int randomTravelCost() {
 }
 
 //renvoie la liste des cases du chemins
-ListNode* rdfsGeneration(LabyrintheNode* nodeStart, int height, int width) {
+ListNode* rdfsGeneration(struct LabyrintheNode* nodeStart, int height, int width) {
     if (!isInLaby(nodeStart,height,width)) return NULL;
     ListNode* roadList = newListNode(10);
     ListNode* roadInTakeList = newListNode(10);
 
-    LabyrintheNode* LastVisitedNode = nodeStart;
+    struct LabyrintheNode* LastVisitedNode = nodeStart;
     addToListNode(roadList, LastVisitedNode);
     addToListNode(roadInTakeList, LastVisitedNode);
 
@@ -46,9 +46,9 @@ ListNode* rdfsGeneration(LabyrintheNode* nodeStart, int height, int width) {
             }
             if (exists || nx < 0 || ny < 0 || nx >= height || ny >= width) continue;
 
-            LabyrintheNode* temp = LabyrintheNode_CreateCoords(nx, ny, randomTravelCost());
+            struct LabyrintheNode* temp = LabyrintheNode_CreateCoords(nx, ny, randomTravelCost());
             int neighborCount = 0;
-            LabyrintheNode* neighbors[4] = {
+            struct LabyrintheNode* neighbors[4] = {
                 LabyrintheNode_CreateCoords(nx+1, ny, 0),
                 LabyrintheNode_CreateCoords(nx-1, ny, 0),
                 LabyrintheNode_CreateCoords(nx, ny+1, 0),
