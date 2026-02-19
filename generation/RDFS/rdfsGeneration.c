@@ -109,8 +109,10 @@ struct ListNode* FillWithWalls(ListNode* chemins, int height, int width, int isP
 struct ListNode* fullFillLabyrintheGeneration(int height,int width,int isPerfect, struct LabyrintheNode* starter) {
     if (!starter) {
         starter = LabyrintheNode_CreateCoords(0,0,randomTravelCost());
+        starter->type = START;
     }
     struct ListNode* chemins = rdfsGeneration(starter,height,width);
+
     struct ListNode* wallList = FillWithWalls(chemins,height,width,isPerfect);
     for (int i = 0; i < wallList->size; i++) {
         addToListNode(chemins, wallList->nodeTab[i]);
