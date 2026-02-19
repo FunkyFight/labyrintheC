@@ -1,6 +1,6 @@
-cmake-build-debug/
 *.exe
 *.obj
 CMakeFiles/
 CMakeCache.txt
 .claude
+cmake-build-debug
