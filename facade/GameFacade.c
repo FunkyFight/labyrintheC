@@ -29,7 +29,7 @@ void DebugAndTest()
     */
 }
 
-static bool Labyrinthe_Tab_To_Nodes(struct LabyrintheNode)
+static bool Labyrinthe_Tab_To_Nodes(struct ListNode)
 
 static bool Labyrinthe_ValidateGrid(struct Labyrinthe* labyrinthe) {
     if(labyrinthe == NULL) return false;

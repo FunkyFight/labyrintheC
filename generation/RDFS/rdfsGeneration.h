@@ -6,12 +6,12 @@
 
 int randomTravelCost();
 
-ListNode* rdfsGeneration(struct LabyrintheNode* nodeStart, int height, int width);
+struct ListNode* rdfsGeneration(struct LabyrintheNode* nodeStart, int height, int width);
 
-int roadExists(ListNode* chemins,int x,int y);
+int roadExists(struct ListNode* chemins,int x,int y);
 
-ListNode* FillWithWalls(ListNode* chemins, int height, int width, int isPerfect);
+struct ListNode* FillWithWalls(ListNode* chemins, int height, int width, int isPerfect);
 
-ListNode* fullFillLabyrintheGeneration(int height,int width,int isPerfect, struct LabyrintheNode* starter);
+struct ListNode* fullFillLabyrintheGeneration(int height,int width,int isPerfect, struct LabyrintheNode* starter);
 
 #endif

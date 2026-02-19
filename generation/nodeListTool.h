@@ -10,10 +10,10 @@ typedef struct ListNode {
 }ListNode;
 
 ListNode* newListNode(int startMaxSize);
-void addToListNode(ListNode* l, struct LabyrintheNode* n);
+void addToListNode(struct ListNode* l, struct LabyrintheNode* n);
 struct LabyrintheNode* removeLastToListNode(ListNode* l);
-int containLabyrintheNode(ListNode* l, struct LabyrintheNode* n);
-void freeListNode(ListNode* l);
+int containLabyrintheNode(struct ListNode* l, struct LabyrintheNode* n);
+void freeListNode(struct ListNode* l);
 int isInLaby(struct LabyrintheNode* node,int height, int width);
 
 
