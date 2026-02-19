@@ -5,6 +5,7 @@
 #include "GameFacade.h"
 #include <stdio.h>
 #include "../business/nodes/labyrinthe_node.h"
+#include "../generation/RDFS/rdfsGeneration.h"
 
 static void GameFacade_ShowNode(struct Game* game, struct LabyrintheNode* node, int cellSx, int cellSy);
 static void GameFacade_ResetVisited(struct LabyrintheNode* node);
@@ -19,10 +20,16 @@ void DebugAndTest()
      * Donc pas besoin de toucher au main !
      */
 
-    struct Labyrinthe labyrinthe = {0};
+    struct LabyrintheNode* labyrinthe = {0};
+    rdfsGeneration(labyrinthe, 5, 5);
+
+    /*
     bool ok = Labyrinthe_ValidateGrid(&labyrinthe);
     GameFacade_ShowInstantlyLabyrinthe(&labyrinthe);
+    */
 }
+
+static bool Labyrinthe_Tab_To_Nodes(struct LabyrintheNode)
 
 static bool Labyrinthe_ValidateGrid(struct Labyrinthe* labyrinthe) {
     if(labyrinthe == NULL) return false;
