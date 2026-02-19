@@ -16,7 +16,7 @@ int randomTravelCost() {
 }
 
 //renvoie la liste des cases du chemins
-ListNode* rdfsGeneration(struct LabyrintheNode* nodeStart, int height, int width) {
+struct ListNode* rdfsGeneration(struct LabyrintheNode* nodeStart, int height, int width) {
     if (!isInLaby(nodeStart,height,width)) return NULL;
     struct ListNode* roadList = newListNode(10);
     struct ListNode* roadInTakeList = newListNode(10);
@@ -106,7 +106,7 @@ struct ListNode* FillWithWalls(ListNode* chemins, int height, int width, int isP
     return wallList;
 }
 
-struct ListNode* fullFillLabyrintheGeneration(int height,int width,int isPerfect, LabyrintheNode* starter) {
+struct ListNode* fullFillLabyrintheGeneration(int height,int width,int isPerfect, struct LabyrintheNode* starter) {
     if (!starter) {
         starter = LabyrintheNode_CreateCoords(0,0,randomTravelCost());
     }
