@@ -10,8 +10,11 @@
 struct GameObjectLabyrintheCell {
     struct GameObject *gameObject;
     float c; // Taille d'un côté
+    SDL_Color defaultColor;
     SDL_Color color;
     char valueChar;
+
+    bool isVisible;
 
     struct LabyrintheNode* associatedLabyrintheNode;
 };

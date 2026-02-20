@@ -27,9 +27,11 @@ struct GameObjectLabyrintheCell* GameObject_LabyrintheCell_Create(struct Game *g
 
 
     cell->gameObject = gameObject;
+    cell->defaultColor = color;
     cell->color = color;
     cell->c = c;
     cell->valueChar = valueChar;
+    cell->isVisible = true;
     cell->associatedLabyrintheNode = associatedLabyrintheNode;
     associatedLabyrintheNode->associatedGameObject = cell;
 
