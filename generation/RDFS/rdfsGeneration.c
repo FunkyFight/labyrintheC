@@ -151,5 +151,6 @@ struct ListNode* fullFillLabyrintheGeneration(int height,int width,int isPerfect
     }
     free(endXY);
 
+    addToListNode(chemins,NULL);
     return chemins;
 }
