@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "labyrinthe_save.h"
+#include "../types.h"
 #include "../business/nodes/labyrinthe_node.h"
 
 struct Labyrinthe* Labyrinthe_LoadJSON(const char *file_path) {
@@ -35,8 +35,6 @@ struct Labyrinthe* Labyrinthe_LoadJSON(const char *file_path) {
         free(labyrinthe); fclose(file); return NULL;
     }
 
-    fprintf(stderr, "Allocation grille width=%d height=%d\n", width, height);
-
     struct LabyrintheNode ***grid = malloc(width * sizeof(struct LabyrintheNode**));
     if (!grid) { free(labyrinthe); fclose(file); return NULL; }
     for (int i = 0; i < width; i++) {
@@ -62,6 +60,7 @@ struct Labyrinthe* Labyrinthe_LoadJSON(const char *file_path) {
             else if (strcmp(typeStr, "END") == 0) type = END;
 
             struct LabyrintheNode *node = LabyrintheNode_CreateCoords(x,y, 1);
+            if (!node) { fprintf(stderr, "Erreur de l'allocation du Node: x=%d y=%d\n", x, y); continue; }
             node->type = type;
             grid[x][y] = node;
 
@@ -90,7 +89,12 @@ struct Labyrinthe* Labyrinthe_LoadJSON(const char *file_path) {
 
     if (!labyrinthe->firstNode) {
         fprintf(stderr, "Aucun START trouvé, utilisation de grid[0][0]\n");
-        labyrinthe->firstNode = grid[0][0];
+        if (grid[0][0]) {
+            labyrinthe->firstNode = grid[0][0];
+            } else {
+                for (int i = 0; i < width; i++) free(grid[i]);
+                    free(grid); free(labyrinthe); fclose(file); return NULL;
+                }
     }
 
     // Libération de la mémoire

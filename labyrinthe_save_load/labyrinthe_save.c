@@ -26,18 +26,28 @@ void Labyrinthe_SaveJSON(struct Labyrinthe *labyrinthe) {
     if (!grid) {fclose(file); printf("ERREUR: Création de la grille"); return;}
     for (int x = 0; x < height; x++) {
         grid[x] = calloc(width, sizeof(struct LabyrintheNode*));
+        if (!grid[x]) {
+            for (int k = 0; k < x; k++) free(grid[k]);
+            {
+                free(grid); fclose(file); return;
+            }
+        }
     }
 
     //remplissage par parcours en largeur (BFS)
     int maxNodes = width * height;
     struct LabyrintheNode **queue = malloc(maxNodes * sizeof(struct LabyrintheNode*));
-    if (!queue) {fclose(file); printf("ERREUR: queue"); return;}
+    if (!queue) {
+        for (int k = 0; k < height; k++) { free(grid[k]); }
+        free(grid); fclose(file); printf("ERREUR: queue"); fclose(file); return;
+    }
     int front = 0, back = 0;
 
     struct LabyrintheNode *start = labyrinthe->firstNode;
-    if (!start || start->x < 0 || start->x >= height || start->y < 0 || start->y >= width) {
+    if (start->x < 0 || start->x >= height || start->y < 0 || start->y >= width) {
         printf("ERREUR: Vérification des coordonnéesx=%d y=%d\n", start->x, start->y);
-        fclose(file); free(queue); free(grid); return;
+        for (int k = 0; k < height; k++) { free(grid[k]); }
+        free(grid); free(queue); fclose(file); return;
     }
 
     grid[start->x][start->y] = start;
@@ -93,7 +103,7 @@ void Labyrinthe_SaveJSON(struct Labyrinthe *labyrinthe) {
 
     fprintf(file, "\n  ]\n}\n");
 
-    for (int x=0; x < width; x++) { free(grid[x]);}
+    for (int x=0; x < height; x++) { free(grid[x]);}
     free(grid);
     fclose(file);
 }
