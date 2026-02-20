@@ -5,6 +5,37 @@
 #include "GenerationSteps.h"
 #include "../../types.h"
 
+struct GenerationStep *GenerationSteps_Create()
+{
+    struct GenerationStep* strct = malloc(sizeof(struct GenerationStep*));
+    strct->stepsLength = 0;
+    return strct;
+}
+
+void GenerationSteps_Free(struct GenerationStep* strct)
+{
+    free(strct);
+}
+
+void GenerationSteps_AddStepToStruct(struct GenerationStep* strct, void* step)
+{
+    enum StepType type = strct->stepType;
+
+    switch (type) {
+        case SetNodeVisibility:
+            strct->step[strct->stepsLength] = (struct SetNodeVisibilityStepType*) step;
+            break;
+        case HighlightExistingNode:
+            strct->step[strct->stepsLength] = (struct HighlightExistingStepType*) step;
+            break;
+        case End:
+            strct->step[strct->stepsLength] = (struct End*) step;
+            break;
+    }
+
+    strct->stepsLength++;
+}
+
 struct GenerationStep *GenerationSteps_CreateSetNodeVisibilityStep(int x, int y, bool visible, int iteration)
 {
     enum StepType stepType = SetNodeVisibility;
