@@ -29,13 +29,6 @@ struct LabyrintheNode* LabyrintheNode_CreateCoords(int x, int y, int travel_cost
     node->y = y;
     node->travel_cost = travel_cost;
 
-    // Initialiser le type basé sur le travel_cost
-    if(travel_cost >= 9999) {
-        node->type = WALL;
-    } else {
-        node->type = CELL;
-    }
-
     return node;
 }
 
