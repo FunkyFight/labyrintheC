@@ -85,6 +85,48 @@ struct LabyrintheNode* GameFacade_Labyrinthe_Tab_To_Nodes(struct ListNode* listN
     return listNodes->nodeTab[0];
 }
 
+bool is_node_already_in_list(struct ListNode* list, struct LabyrintheNode* node) {
+    for (int i = 0; i < list->size; i++) {
+        if (list->nodeTab[i] == node) {
+            return true; // Le nœud est déjà dans la liste !
+        }
+    }
+    return false;
+}
+
+struct ListNode* GameFacade_Labyrinthe_Nodes_To_Tab(struct LabyrintheNode* root) {
+    if (root == NULL) return NULL;
+
+    struct ListNode* list = malloc(sizeof(struct ListNode));
+    int capacity = 16;
+    list->nodeTab = malloc(capacity * sizeof(struct LabyrintheNode*));
+    list->size = 0;
+
+    list->nodeTab[list->size++] = root;
+
+    int current_index = 0;
+
+    while (current_index < list->size) {
+        struct LabyrintheNode* current = list->nodeTab[current_index];
+        struct LabyrintheNode* neighbors[4] = {current->north, current->south, current->east, current->west};
+
+        for (int j = 0; j < 4; j++) {
+            if (neighbors[j] != NULL && !is_node_already_in_list(list, neighbors[j])) {
+                if (list->size >= capacity) {
+                    capacity *= 2;
+                    list->nodeTab = realloc(list->nodeTab, capacity * sizeof(struct LabyrintheNode*));
+                }
+                list->nodeTab[list->size++] = neighbors[j];
+            }
+        }
+        current_index++;
+    }
+
+    return list;
+}
+
+
+
 static bool Labyrinthe_ValidateGrid(struct Labyrinthe* labyrinthe) {
     if(labyrinthe == NULL) return false;
     if(labyrinthe->firstNode == NULL) return false;

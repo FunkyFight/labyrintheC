@@ -4,6 +4,7 @@
 
 #include "GenerationSteps.h"
 #include "../../types.h"
+#include "../../facade/GameFacade.h"
 
 struct GenerationStep *GenerationSteps_Create()
 {
@@ -52,3 +53,11 @@ struct GenerationStep *GenerationSteps_CreateHighlightExistingStepStep(int x, in
     return generationStep;
 }
 
+
+
+void GenerationSteps_Read(struct GenerationStep** steps, struct LabyrintheNode* rootNode)
+{
+    struct LabyrintheNode** nodes = GameFacade_Labyrinthe_Nodes_To_Tab(rootNode);
+
+
+}

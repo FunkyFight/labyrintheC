@@ -16,6 +16,7 @@ struct Labyrinthe;
 
 void GameFacade_ShowInstantlyLabyrinthe(struct Labyrinthe* labyrinthe);
 struct LabyrintheNode* GameFacade_Labyrinthe_Tab_To_Nodes(struct ListNode* listNodes);
+struct ListNode* GameFacade_Labyrinthe_Nodes_To_Tab(struct LabyrintheNode* root);
 void DebugAndTest();
 
 #endif //LABYRINTHE_GAMEFACADE_H
