@@ -8,7 +8,7 @@
 #include <SDL3/SDL.h>
 #include <rpc.h>
 #include <glib.h>
-
+#include "gameobjects/LabyrinthCell/gameobject_labyrinthe_cell.h"
 
 
 /**
@@ -60,6 +60,8 @@ struct LabyrintheNode {
 
     enum LabyrintheNodeType type;
     int travel_cost;
+
+    struct GameObjectLabyrintheCell* associatedGameObject;
 
     bool visited;
 };
