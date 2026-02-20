@@ -89,3 +89,6 @@ Reponse "R" = l->nodetab[R] ou l->nodetab[R]->x = x et l->nodetab[R]->y = y
 ## Erreur DX DY
 
 Github peut afficher une erreur par rapport à un DX et un DY , cette erreur est a ignorer, le systeme se basant sur les coordonnées géométriques : donc x etant les lignes et y etant les colonnes.
+
+ATTENTION : La partie affichage fonctionne en mirroir dans lequel le x est la colonne et le y est la ligne.
+Cela n'a aucune incidence sur les données qui sont compatibles entre elles.
