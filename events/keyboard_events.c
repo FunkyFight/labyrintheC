@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include "keyboard_events.h"
+#include "../business/generationSteps/GenerationSteps.h"
 
 void event_on_key_down(struct Game *g) {
 
@@ -17,7 +18,8 @@ void event_on_key_down(struct Game *g) {
     switch(keycode)
     {
         case SDLK_SPACE:
-            printf("Espace !!");
+            GenerationSteps_Read(g->generationSteps, g->labyrinthe->firstNode);
+            printf("Affichage étape par étape du labyrinthe");
             break;
     }
 

@@ -96,6 +96,9 @@ struct Game {
     bool is_running;
     GArray *gameobjects;
     struct Labyrinthe *labyrinthe;
+
+    bool is_generation_steps_displayer_running;
+    struct GenerationStep** generationSteps; // Étapes de générations pouvant être display quand on presse SPACE
 };
 
 struct GameObject {
