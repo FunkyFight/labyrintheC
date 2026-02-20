@@ -73,8 +73,10 @@ struct ListNode* rdfsGeneration(struct LabyrintheNode* nodeStart, int height, in
         } else {
             int choise = rand() % possibilities->size;
             LastVisitedNode = possibilities->nodeTab[choise];
-            addToListNode(roadList, LastVisitedNode);
-            addToListNode(roadInTakeList, LastVisitedNode);
+            if (LastVisitedNode) {
+                addToListNode(roadList, LastVisitedNode);
+                addToListNode(roadInTakeList, LastVisitedNode);
+            }
         }
         freeListNode(possibilities);
     }
