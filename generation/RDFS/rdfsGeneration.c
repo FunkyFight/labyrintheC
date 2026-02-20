@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "../nodeListTool.h"
@@ -97,7 +98,6 @@ struct ListNode* FillWithWalls(ListNode* chemins, int height, int width, int isP
             if (!roadExists(chemins,i,j)) {
                 if (!isPerfect && (rand() % 9 == 0)) {
                     struct LabyrintheNode* wall = LabyrintheNode_CreateCoords(i,j,randomTravelCost());
-                    wall->type = WALL;
                     addToListNode(wallList,wall);
                 }else {
                     struct LabyrintheNode* wall = LabyrintheNode_CreateCoords(i,j,9999);
@@ -111,6 +111,7 @@ struct ListNode* FillWithWalls(ListNode* chemins, int height, int width, int isP
 }
 
 struct ListNode* fullFillLabyrintheGeneration(int height,int width,int isPerfect, struct LabyrintheNode* starter) {
+    srand(time(NULL));
     if (!starter) {
         starter = LabyrintheNode_CreateCoords(0,0,randomTravelCost());
     }
