@@ -347,7 +347,7 @@ static void GameFacade_ShowNode(struct Game* game, struct LabyrintheNode* node, 
     int x = node->x * cellSx;
     int y = node->y * cellSy;
 
-    struct GameObjectLabyrintheCell* cellGameObject = GameObject_LabyrintheCell_Create(game, x, y, cellSx, cellColor, ' '); // Toujours un carré
+    struct GameObjectLabyrintheCell* cellGameObject = GameObject_LabyrintheCell_Create(game, x, y, cellSx, cellColor, ' ', node); // Toujours un carré
     GameObjectManager_AddGameObject(game, cellGameObject);
 
     // Récursion aux noeuds enfants
