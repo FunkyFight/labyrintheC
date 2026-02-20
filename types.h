@@ -33,11 +33,9 @@ struct SetNodeVisibilityStepType {
 };
 
 struct GenerationStep {
-    void** step;
-    int stepsLength; // Taille du tableau
+    void* step;
     enum StepType stepType;
     int iteration; // C'est l'itération numéro combien de la génération ?
-
 };
 
 /**
