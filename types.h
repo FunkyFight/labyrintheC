@@ -11,6 +11,31 @@
 
 
 
+/**
+ * Structures visualisation step by step de la génération
+ */
+
+enum StepType
+{
+    HighlightExistingNode,
+    SetNodeVisibility
+};
+
+struct HighlightExistingStepType {
+    int x, y;
+    SDL_Color color;
+};
+
+struct SetNodeVisibilityStepType {
+    int x, y;
+    bool visible;
+};
+
+struct GenerationStep {
+    void* step;
+    enum StepType stepType;
+    int iteration; // C'est l'itération numéro combien de la génération ?
+};
 
 /**
  * Structures Labyrinthe

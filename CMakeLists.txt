@@ -31,6 +31,8 @@ add_executable(labyrinthe main.c
         generation/RDFS/rdfsGeneration.h
         utils/node_sort.c
         utils/node_sort.h
+        business/generationSteps/GenerationSteps.c
+        business/generationSteps/GenerationSteps.h
 )
 
 target_include_directories(labyrinthe PRIVATE
