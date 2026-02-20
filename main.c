@@ -7,16 +7,18 @@
 #include "events/event_manager.h"
 #include "draw/draw_game.h"
 #include "business/nodes/labyrinthe_node.h"
+#include "main.h"
+#include "facade/GameFacade.h"
+
+struct Game *currentGame = NULL;
 
 #define SDL_FLAGS (SDL_INIT_VIDEO | SDL_INIT_AUDIO)
 #define WINDOWS_FLAGS (0)
 #define WINDOW_TITLE "Labyrinthe - Projet Technique L3"
 #define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
+#define WINDOW_HEIGHT 800
 
-bool game_init_sdl(struct Game *g);
-void game_free(struct Game *g);
-void game_run(struct Game *g);
+
 
 bool game_init_sdl(struct Game *g) {
     if(!SDL_Init(SDL_FLAGS)) {
@@ -36,6 +38,7 @@ bool game_init_sdl(struct Game *g) {
         return false;
     }
 
+    srand(time(NULL));
     g->is_running = true;
     g->event = malloc(sizeof *g->event);
 
@@ -45,9 +48,14 @@ bool game_init_sdl(struct Game *g) {
 
     draw_init(g);
 
+    currentGame = g;
+
     // Random labyrinthe de test
-    g->labyrinthe = malloc(sizeof(struct Labyrinthe));
-    Labyrinthe_InitTest5x5(g->labyrinthe);
+    g->labyrinthe = calloc(1, sizeof(struct Labyrinthe));
+    if (g->labyrinthe == NULL) {
+        fprintf(stderr, "Erreur d'allocation du labyrinthe\n");
+        return false;
+    }
 
     return true;
 }
@@ -96,11 +104,13 @@ int main(int argc, char **argv) {
 
     if(game_init_sdl(&game)) {
         exit_status = EXIT_SUCCESS;
+        DebugAndTest();
         game_run(&game);
     }
 
 
     game_free(&game);
+
 
 
     return exit_status;

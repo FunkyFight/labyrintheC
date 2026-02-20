@@ -2,58 +2,41 @@
 #include <time.h>
 #include "../../types.h"
 
-void Labyrinthe_InitTest5x5(struct Labyrinthe *laby) {
-    laby->width = 5;
-    laby->height = 5;
+struct LabyrintheNode* LabyrintheNode_Create() {
+    struct LabyrintheNode* node;
+    node = malloc(sizeof(struct LabyrintheNode));
 
-    srand(time(NULL));
+    node->north = NULL;
+    node->south = NULL;
+    node->east = NULL;
+    node->west = NULL;
+    node->visited = false;
+    node->type = CELL; // Type par défaut
 
-    struct LabyrintheNode* tempGrid[5][5];
+    return node;
+}
 
-    for (int y = 0; y < 5; y++) {
-        for (int x = 0; x < 5; x++) {
-            struct LabyrintheNode *node;
+struct LabyrintheNode* LabyrintheNode_CreateCoords(int x, int y, int travel_cost) {
+    struct LabyrintheNode* node;
+    node = malloc(sizeof(struct LabyrintheNode));
 
-            if (x == 0 && y == 0) {
-                node = &laby->firstNode;
-            } else {
-                node = malloc(sizeof(struct LabyrintheNode));
-            }
+    node->north = NULL;
+    node->south = NULL;
+    node->east = NULL;
+    node->west = NULL;
+    node->visited = false;
+    node->x = x;
+    node->y = y;
+    node->travel_cost = travel_cost;
 
-            node->x = x;
-            node->y = y;
+    return node;
+}
 
-            node->north = NULL;
-            node->south = NULL;
-            node->east = NULL;
-            node->west = NULL;
+void LabyrintheNode_Destroy(struct LabyrintheNode* node) {
+    if(node->north != NULL) LabyrintheNode_Destroy(node->north);
+    if(node->south != NULL) LabyrintheNode_Destroy(node->south);
+    if(node->east != NULL) LabyrintheNode_Destroy(node->east);
+    if(node->west != NULL) LabyrintheNode_Destroy(node->west);
 
-            if (x == 0 && y == 0) {
-                node->type = CELL;
-                node->travel_cost = 0;
-            } else {
-                int r = rand() % 100;
-                if (r < 70) {
-                    node->type = CELL;
-                    node->travel_cost = 1;
-                } else {
-                    node->type = WALL;
-                    node->travel_cost = 9999;
-                }
-            }
-
-            tempGrid[x][y] = node;
-        }
-    }
-
-    for (int y = 0; y < 5; y++) {
-        for (int x = 0; x < 5; x++) {
-            struct LabyrintheNode *currentNode = tempGrid[x][y];
-
-            if (y > 0) currentNode->north = tempGrid[x][y - 1];
-            if (y < 4) currentNode->south = tempGrid[x][y + 1];
-            if (x > 0) currentNode->west  = tempGrid[x - 1][y];
-            if (x < 4) currentNode->east  = tempGrid[x + 1][y];
-        }
-    }
+    free(node);
 }
