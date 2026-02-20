@@ -123,12 +123,12 @@ int displayGenerationSteps(void *data) {
 
             case SetNodeVisibility:
                 struct SetNodeVisibilityStepType* step2 = (struct SetNodeVisibilityStepType*) currentGenerationStep->step;
-                int x2 = step->x;
-                int y2 = step->y;
+                int x2 = step2->x;
+                int y2 = step2->y;
 
-                struct LabyrintheNode* current2 = LabyrintheNode_Get_labyrinthe_node_at_coords(generationStepReadThreadData->nodeList, x, y);
+                struct LabyrintheNode* current2 = LabyrintheNode_Get_labyrinthe_node_at_coords(generationStepReadThreadData->nodeList, x2, y2);
 
-                current->associatedGameObject->isVisible = step2->visible;
+                current2->associatedGameObject->isVisible = step2->visible;
                 break;
             case End:
             default:
