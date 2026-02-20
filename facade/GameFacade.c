@@ -25,7 +25,7 @@ void DebugAndTest()
      */
 
     //struct ListNode* listNode = fullFillLabyrintheGeneration(50, 50, 1, NULL);
-    struct ListNode* listNode = fullFillLabyrintheGeneration(50, 50, 0, LabyrintheNode_CreateCoords(27,27,randomTravelCost()));
+    struct ListNode* listNode = fullFillLabyrintheGeneration(50, 50, 0, LabyrintheNode_CreateCoords(33,41,randomTravelCost()));
     struct LabyrintheNode* rootNode = GameFacade_Labyrinthe_Tab_To_Nodes(listNode);
 
     struct Labyrinthe labyrinthe = {

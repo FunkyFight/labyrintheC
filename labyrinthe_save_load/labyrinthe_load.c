@@ -61,7 +61,8 @@ struct Labyrinthe* Labyrinthe_LoadJSON(const char *file_path) {
             else if (strcmp(typeStr, "START") == 0) type = START;
             else if (strcmp(typeStr, "END") == 0) type = END;
 
-            struct LabyrintheNode *node = LabyrintheNode_CreateCoords(x,y,(type == WALL) ? 9999 : 1);
+            struct LabyrintheNode *node = LabyrintheNode_CreateCoords(x,y, 1);
+            node->type = type;
             grid[x][y] = node;
 
             if (type == START) { labyrinthe->firstNode = node; }
@@ -80,13 +81,9 @@ struct Labyrinthe* Labyrinthe_LoadJSON(const char *file_path) {
                         x, y, node->x, node->y);
             }
 
-            //fprintf(stderr, "  -> north\n");
             node->north = (y > 0)          ? grid[x][y-1] : NULL;
-            //fprintf(stderr, "  -> south\n");
             node->south = (y < height - 1) ? grid[x][y+1] : NULL;
-            //fprintf(stderr, "  -> west\n");
             node->west  = (x > 0)          ? grid[x-1][y] : NULL;
-            //fprintf(stderr, "  -> east\n");
             node->east  = (x < width - 1)  ? grid[x+1][y] : NULL;
         }
     }
