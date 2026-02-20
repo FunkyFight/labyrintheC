@@ -96,9 +96,13 @@ struct ListNode* FillWithWalls(ListNode* chemins, int height, int width, int isP
         for (int j = 0; j < width; j++) {
             if (!roadExists(chemins,i,j)) {
                 if (!isPerfect && (rand() % 9 == 0)) {
-                    addToListNode(wallList,LabyrintheNode_CreateCoords(i,j,randomTravelCost()));
+                    struct LabyrintheNode* wall = LabyrintheNode_CreateCoords(i,j,randomTravelCost());
+                    wall->type = WALL;
+                    addToListNode(wallList,wall);
                 }else {
-                    addToListNode(wallList,LabyrintheNode_CreateCoords(i,j,9999));
+                    struct LabyrintheNode* wall = LabyrintheNode_CreateCoords(i,j,9999);
+                    wall->type = WALL;
+                    addToListNode(wallList,wall);
                 }
             }
         }
@@ -109,13 +113,42 @@ struct ListNode* FillWithWalls(ListNode* chemins, int height, int width, int isP
 struct ListNode* fullFillLabyrintheGeneration(int height,int width,int isPerfect, struct LabyrintheNode* starter) {
     if (!starter) {
         starter = LabyrintheNode_CreateCoords(0,0,randomTravelCost());
-        starter->type = START;
     }
+    starter->type = START;
     struct ListNode* chemins = rdfsGeneration(starter,height,width);
 
     struct ListNode* wallList = FillWithWalls(chemins,height,width,isPerfect);
     for (int i = 0; i < wallList->size; i++) {
         addToListNode(chemins, wallList->nodeTab[i]);
     }
+
+    int* endXY = malloc(2 * sizeof(int));
+    if (!endXY) {return NULL; }
+
+    if (starter->x < width / 2) {
+        if (starter->y < height / 2) {
+            endXY[0] = width - 1;
+            endXY[1] = height - 1;
+        } else {
+            endXY[0] = width - 1;
+            endXY[1] = 0;
+        }
+    } else {
+        if (starter->y < height / 2) {
+            endXY[0] = 0;
+            endXY[1] = height - 1;
+        } else {
+            endXY[0] = 0;
+            endXY[1] = 0;
+        }
+    }
+
+    struct LabyrintheNode* end = chemins->nodeTab[idLabyrintheNodeInListNode(chemins,endXY[0],endXY[1] )];
+    end->type = END;
+    if (end->travel_cost == 9999) {
+        end->travel_cost = randomTravelCost();
+    }
+    free(endXY);
+
     return chemins;
 }

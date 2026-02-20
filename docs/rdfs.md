@@ -78,6 +78,11 @@ Renvoie 1 si c'est le cas
 
 Sinon renvoie 0
 
+### Fonction `idLabyrintheNodeInListNode(ListNode* l,  int x, int y )`
+
+Recupère la localisation du node aux coordonnées indiquées sous la forme:
+
+Reponse "R" = l->nodetab[R] ou l->nodetab[R]->x = x et l->nodetab[R]->y = y
 
 # Attention
 
