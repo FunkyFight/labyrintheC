@@ -29,15 +29,15 @@ struct ListNode* rdfsGeneration(struct LabyrintheNode* nodeStart, int height, in
     while (roadInTakeList->size > 0) {
         ListNode* possibilities = newListNode(4);
         int dirs[4][2] = {
-            {LastVisitedNode->x + 1, LastVisitedNode->y},
-            {LastVisitedNode->x - 1, LastVisitedNode->y},
-            {LastVisitedNode->x, LastVisitedNode->y + 1},
-            {LastVisitedNode->x, LastVisitedNode->y - 1}
+            {LastVisitedNode->y + 1, LastVisitedNode->x},
+            {LastVisitedNode->y - 1, LastVisitedNode->x},
+            {LastVisitedNode->y, LastVisitedNode->x + 1},
+            {LastVisitedNode->y, LastVisitedNode->x - 1}
         };
 
         for (int i = 0; i < 4; i++) {
-            int nx = dirs[i][0];
-            int ny = dirs[i][1];
+            int ny= dirs[i][0];
+            int nx = dirs[i][1];
             int exists = 0;
             for (int j = 0; j < roadList->size; j++) {
                 if (roadList->nodeTab[j]->x == nx && roadList->nodeTab[j]->y == ny) {
