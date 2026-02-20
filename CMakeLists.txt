@@ -27,6 +27,9 @@ add_executable(labyrinthe main.c
         main.h
         generation/RDFS/rdfsGeneration.c
         generation/nodeListTool.c
+        events/keyboard_events.c
+        events/keyboard_events.h
+        business/generationSteps/GenerationSteps.c
 )
 
 target_include_directories(labyrinthe PRIVATE

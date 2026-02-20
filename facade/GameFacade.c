@@ -34,6 +34,7 @@ void DebugAndTest()
 
     bool ok = Labyrinthe_ValidateGrid(&labyrinthe);
     GameFacade_ShowInstantlyLabyrinthe(&labyrinthe);
+
 }
 
 struct LabyrintheNode* GameFacade_Labyrinthe_Tab_To_Nodes(struct ListNode* listNodes)

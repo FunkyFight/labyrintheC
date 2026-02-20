@@ -18,7 +18,8 @@
 enum StepType
 {
     HighlightExistingNode,
-    SetNodeVisibility
+    SetNodeVisibility,
+    End /* ULTRA IMPORTANT, A METTRE DANS LE TABLEAU A LA FIN, EQUIVALENT DU \0 POUR UNE CHAINE */
 };
 
 struct HighlightExistingStepType {
@@ -35,6 +36,7 @@ struct GenerationStep {
     void* step;
     enum StepType stepType;
     int iteration; // C'est l'itération numéro combien de la génération ?
+
 };
 
 /**
