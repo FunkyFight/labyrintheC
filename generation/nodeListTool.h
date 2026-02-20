@@ -15,6 +15,7 @@ struct LabyrintheNode* removeLastToListNode(ListNode* l);
 int containLabyrintheNode(struct ListNode* l, struct LabyrintheNode* n);
 void freeListNode(struct ListNode* l);
 int isInLaby(struct LabyrintheNode* node,int height, int width);
+int idLabyrintheNodeInListNode(ListNode* l,  int x, int y );
 
 
 

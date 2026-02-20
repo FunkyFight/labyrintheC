@@ -15,13 +15,15 @@ static void Labyrinthe_FreeGrid(struct Labyrinthe* labyrinthe);
 
 void DebugAndTest()
 {
+
     /**
      * ULTRA IMPORTANT A LIRE
      * Utilisez cette fonction pour faire des appels de fonctions de test. Tout ce que vous exécuterez ici sera exécutée par main().
      * Donc pas besoin de toucher au main !
      */
 
-    struct ListNode* listNode = fullFillLabyrintheGeneration(50, 50, 1, NULL);
+    //struct ListNode* listNode = fullFillLabyrintheGeneration(50, 50, 1, NULL);
+    struct ListNode* listNode = fullFillLabyrintheGeneration(50, 50, 0, LabyrintheNode_CreateCoords(27,27,randomTravelCost()));
     struct LabyrintheNode* rootNode = GameFacade_Labyrinthe_Tab_To_Nodes(listNode);
 
     struct Labyrinthe labyrinthe = {

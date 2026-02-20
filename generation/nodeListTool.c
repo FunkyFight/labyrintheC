@@ -54,3 +54,10 @@ int isInLaby(struct LabyrintheNode* node, int height, int width) {
     return 0;
 }
 
+int idLabyrintheNodeInListNode(ListNode* l, int x, int y ) {
+    for (int i = 0; i < l->size; i++) {
+        if (l->nodeTab[i]->x == x && l->nodeTab[i]->y == y) return i;
+    }
+    return -1;
+};
+
