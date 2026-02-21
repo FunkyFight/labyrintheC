@@ -27,6 +27,13 @@ add_executable(labyrinthe main.c
         main.h
         generation/RDFS/rdfsGeneration.c
         generation/nodeListTool.c
+        generation/Prim/PrimGeneration.c
+        generation/Prim/PrimGeneration.h
+        generation/Prim/PrimGeneration.h
+        generation/Prim/PrimGeneration.c
+        generation/RDFS/rdfsGeneration.c
+        generation/RDFS/rdfsGeneration.c
+        generation/Prim/PrimGeneration.c
 )
 
 target_include_directories(labyrinthe PRIVATE
