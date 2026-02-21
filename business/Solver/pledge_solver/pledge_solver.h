@@ -1,0 +1,8 @@
+//
+// Created by rapha on 18/02/2026.
+//
+
+#ifndef LABYRINTHE_PLEDGE_SOLVER_H
+#define LABYRINTHE_PLEDGE_SOLVER_H
+
+#endif //LABYRINTHE_PLEDGE_SOLVER_H

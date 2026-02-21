@@ -1,0 +1,8 @@
+//
+// Created by rapha on 17/02/2026.
+//
+
+#ifndef LABYRINTHE_RANDOM_SOLVER_H
+#define LABYRINTHE_RANDOM_SOLVER_H
+
+#endif //LABYRINTHE_RANDOM_SOLVER_H

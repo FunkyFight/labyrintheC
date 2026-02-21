@@ -13,8 +13,9 @@
 
 
 
-struct LabyrintheNode* Right_Solver(struct LabyrintheNode* node)
+struct ListNode* Right_Solver(struct LabyrintheNode* node)
 {
+
     if (node->type == START) {
         if (node->east->type == CELL)
         {
@@ -36,6 +37,8 @@ struct LabyrintheNode* Right_Solver(struct LabyrintheNode* node)
             node->color = (SDL_Color){0, 255, 0, 255};
             node->south = Right_Solver(node->south);
         }
+
+
 
 
     }
