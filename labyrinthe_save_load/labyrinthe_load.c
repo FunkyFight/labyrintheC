@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../types.h"
 #include "../business/nodes/labyrinthe_node.h"
 
@@ -39,6 +40,12 @@ struct Labyrinthe* Labyrinthe_LoadJSON(const char *file_path) {
     if (!grid) { free(labyrinthe); fclose(file); return NULL; }
     for (int i = 0; i < width; i++) {
         grid[i] = calloc(height, sizeof(struct LabyrintheNode*));
+        if (!grid[i]) {
+            for (int k = 0; k < i; k++) {
+                free(grid[k]);
+            }
+            free(grid); free(labyrinthe); fclose(file); return NULL;
+        }
     }
 
     // Lire les nodes

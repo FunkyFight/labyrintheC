@@ -22,10 +22,10 @@ void Labyrinthe_SaveJSON(struct Labyrinthe *labyrinthe) {
     fprintf(file, "{\n  \"width\": %d,\n  \"height\": %d,\n  \"nodes\": [\n", width, height);
 
     //Création d'une grille temporaire
-    struct LabyrintheNode ***grid = malloc(height * sizeof(struct LabyrintheNode**));
+    struct LabyrintheNode ***grid = malloc(width * sizeof(struct LabyrintheNode**));
     if (!grid) {fclose(file); printf("ERREUR: Création de la grille"); return;}
-    for (int x = 0; x < height; x++) {
-        grid[x] = calloc(width, sizeof(struct LabyrintheNode*));
+    for (int x = 0; x < width; x++) {
+        grid[x] = calloc(height, sizeof(struct LabyrintheNode*));
         if (!grid[x]) {
             for (int k = 0; k < x; k++) free(grid[k]);
             {
@@ -44,7 +44,7 @@ void Labyrinthe_SaveJSON(struct Labyrinthe *labyrinthe) {
     int front = 0, back = 0;
 
     struct LabyrintheNode *start = labyrinthe->firstNode;
-    if (start->x < 0 || start->x >= height || start->y < 0 || start->y >= width) {
+    if (start->x < 0 || start->x >= width || start->y < 0 || start->y >= height) {
         printf("ERREUR: Vérification des coordonnéesx=%d y=%d\n", start->x, start->y);
         for (int k = 0; k < height; k++) { free(grid[k]); }
         free(grid); free(queue); fclose(file); return;
@@ -67,7 +67,7 @@ void Labyrinthe_SaveJSON(struct Labyrinthe *labyrinthe) {
         for (int i = 0; i < 4; i++) {
             struct LabyrintheNode *n = voisins[i];
             if (!n) continue;
-            if (n->x < 0 || n->x >= height || n->y < 0 || n->y >= width) { continue; }
+            if (n->x < 0 || n->x >= width || n->y < 0 || n->y >= height) { continue; }
             if (grid[n->x][n->y] == NULL) {
                 grid[n->x][n->y] = n;
                 queue[back++] = n;
@@ -79,12 +79,17 @@ void Labyrinthe_SaveJSON(struct Labyrinthe *labyrinthe) {
 
     //Ecriture
     bool firstNodeWritten = false;
-    for (int x = 0; x < height; x++) {
-        for (int y = 0; y < width; y++) {
+
+    int placeholderCount = 0;
+    struct LabyrintheNode **placeholders = malloc(width * height * sizeof(struct LabyrintheNode*));
+
+    for (int x = 0; x < width; x++) {
+        for (int y = 0; y < height; y++) {
             struct LabyrintheNode *node = grid[x][y];
             if (!node) {
                 node = LabyrintheNode_CreateCoords(x,y,9999);
                 grid[x][y] = node;
+                if (placeholders) { placeholders[placeholderCount++] = node; }
             }
 
             char *typeStr;
@@ -103,7 +108,9 @@ void Labyrinthe_SaveJSON(struct Labyrinthe *labyrinthe) {
 
     fprintf(file, "\n  ]\n}\n");
 
-    for (int x=0; x < height; x++) { free(grid[x]);}
+    for (int i=0; i < placeholderCount; i++) { free(placeholders[i]);}
+    free(placeholders);
+    for (int x=0; x < width; x++) { free(grid[x]); }
     free(grid);
     fclose(file);
 }
