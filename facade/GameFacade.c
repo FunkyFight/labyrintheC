@@ -7,6 +7,8 @@
 #include "../business/nodes/labyrinthe_node.h"
 #include "../generation/RDFS/rdfsGeneration.h"
 #include "../utils/node_sort.h"
+#include "../labyrinthe_save_load/labyrinthe_save.h"
+#include "../labyrinthe_save_load/labyrinthe_load.h"
 
 static void GameFacade_ShowNode(struct Game* game, struct LabyrintheNode* node, int cellSx, int cellSy);
 static void GameFacade_ResetVisited(struct LabyrintheNode* node);
@@ -23,7 +25,7 @@ void DebugAndTest()
      */
 
     //struct ListNode* listNode = fullFillLabyrintheGeneration(50, 50, 1, NULL);
-    struct ListNode* listNode = fullFillLabyrintheGeneration(50, 50, 0, LabyrintheNode_CreateCoords(27,27,randomTravelCost()));
+    struct ListNode* listNode = fullFillLabyrintheGeneration(50, 50, 0, LabyrintheNode_CreateCoords(33,41,randomTravelCost()));
     struct LabyrintheNode* rootNode = GameFacade_Labyrinthe_Tab_To_Nodes(listNode);
 
     struct Labyrinthe labyrinthe = {
@@ -32,8 +34,19 @@ void DebugAndTest()
         .height = 50
     };
 
+    Labyrinthe_SaveJSON(&labyrinthe);
+
     bool ok = Labyrinthe_ValidateGrid(&labyrinthe);
-    GameFacade_ShowInstantlyLabyrinthe(&labyrinthe);
+    //GameFacade_ShowInstantlyLabyrinthe(&labyrinthe);
+
+    struct Labyrinthe *lab = Labyrinthe_LoadJSON("../data/labyrinthe.json");
+    if (!lab) {printf("ERREUR pas de labyrinthe");}
+    if (!lab->firstNode) {
+        printf("ERREUR: firstNode est NULL\n");
+    }
+    printf("FirstNode: %p (%d,%d)\n", lab->firstNode, lab->firstNode->x, lab->firstNode->y);
+
+    GameFacade_ShowInstantlyLabyrinthe(lab);
 }
 
 struct LabyrintheNode* GameFacade_Labyrinthe_Tab_To_Nodes(struct ListNode* listNodes)
