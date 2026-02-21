@@ -38,6 +38,7 @@ bool game_init_sdl(struct Game *g) {
         return false;
     }
 
+    srand(time(NULL));
     g->is_running = true;
     g->event = malloc(sizeof *g->event);
 

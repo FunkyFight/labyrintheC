@@ -25,11 +25,8 @@ add_executable(labyrinthe main.c
         facade/GameFacade.c
         facade/GameFacade.h
         main.h
-        business/Solver/right_solver/right_solver.c
-        business/Solver/random_solver/random_solver.c
-        business/Solver/random_solver/random_solver.h
-        business/Solver/pledge_solver/pledge_solver.c
-        business/Solver/pledge_solver/pledge_solver.h
+        generation/RDFS/rdfsGeneration.c
+        generation/nodeListTool.c
 )
 
 target_include_directories(labyrinthe PRIVATE

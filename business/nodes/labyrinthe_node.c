@@ -11,6 +11,7 @@ struct LabyrintheNode* LabyrintheNode_Create() {
     node->east = NULL;
     node->west = NULL;
     node->visited = false;
+    node->type = CELL; // Type par défaut
 
     return node;
 }

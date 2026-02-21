@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "gameobject_labyrinthe_cell.h"
 
-struct GameObjectLabyrintheCell* GameObject_LabyrintheCell_Create(struct Game *game, float x, float y, float c, SDL_Color color, char valueChar) {
+struct GameObjectLabyrintheCell* GameObject_LabyrintheCell_Create(struct Game *game, float x, float y, float c, SDL_Color color, char valueChar, struct LabyrintheNode* associatedLabyrintheNode) {
     struct GameObjectLabyrintheCell *cell = malloc(sizeof(struct GameObjectLabyrintheCell));
 
     struct GameObject *gameObject = malloc(sizeof(struct GameObject));
@@ -27,9 +27,13 @@ struct GameObjectLabyrintheCell* GameObject_LabyrintheCell_Create(struct Game *g
 
 
     cell->gameObject = gameObject;
+    cell->defaultColor = color;
     cell->color = color;
     cell->c = c;
     cell->valueChar = valueChar;
+    cell->isVisible = true;
+    cell->associatedLabyrintheNode = associatedLabyrintheNode;
+    associatedLabyrintheNode->associatedGameObject = cell;
 
     return cell;
 }
