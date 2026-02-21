@@ -39,7 +39,7 @@ void Labyrinthe_SaveJSON(struct Labyrinthe *labyrinthe) {
     struct LabyrintheNode **queue = malloc(maxNodes * sizeof(struct LabyrintheNode*));
     if (!queue) {
         for (int k = 0; k < width; k++) { free(grid[k]); }
-        free(grid); fclose(file); fprintf(stderr, "ERREUR: queue\n"); fclose(file); return;
+        free(grid); fclose(file); fprintf(stderr, "ERREUR: queue\n"); return;
     }
     int front = 0, back = 0;
 
@@ -92,7 +92,7 @@ void Labyrinthe_SaveJSON(struct Labyrinthe *labyrinthe) {
                     fprintf(stderr, "ERREUR: allocation node placeholder %dx%d",x,y);
                     for (int k = 0; k < placeholderCount; k++) { if (placeholders[k]) { free(placeholders[k]); } }
                     free(placeholders);
-                    for (int k = 0; k < width * height; k++) { free(grid[k]); }
+                    for (int k = 0; k < width; k++) { free(grid[k]); }
                     free(grid); fclose(file); return;
                 }
                 grid[x][y] = node;
