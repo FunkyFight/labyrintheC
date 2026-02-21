@@ -99,7 +99,12 @@ struct Labyrinthe* Labyrinthe_LoadJSON(const char *file_path) {
         if (grid[0][0]) {
             labyrinthe->firstNode = grid[0][0];
             } else {
-                for (int i = 0; i < width; i++) free(grid[i]);
+                for (int x = 0; x < width; x++) {
+                    for (int y = 0; y < height; y++) {
+                        if (grid[x][y]) { free(grid[x][y]); }
+                    }
+                    free(grid[x]);
+                }
                     free(grid); free(labyrinthe); fclose(file); return NULL;
                 }
     }

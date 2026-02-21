@@ -38,15 +38,15 @@ void Labyrinthe_SaveJSON(struct Labyrinthe *labyrinthe) {
     int maxNodes = width * height;
     struct LabyrintheNode **queue = malloc(maxNodes * sizeof(struct LabyrintheNode*));
     if (!queue) {
-        for (int k = 0; k < height; k++) { free(grid[k]); }
-        free(grid); fclose(file); printf("ERREUR: queue"); fclose(file); return;
+        for (int k = 0; k < width; k++) { free(grid[k]); }
+        free(grid); fclose(file); fprintf(stderr, "ERREUR: queue\n"); fclose(file); return;
     }
     int front = 0, back = 0;
 
     struct LabyrintheNode *start = labyrinthe->firstNode;
     if (start->x < 0 || start->x >= width || start->y < 0 || start->y >= height) {
         printf("ERREUR: Vérification des coordonnéesx=%d y=%d\n", start->x, start->y);
-        for (int k = 0; k < height; k++) { free(grid[k]); }
+        for (int k = 0; k < width; k++) { free(grid[k]); }
         free(grid); free(queue); fclose(file); return;
     }
 
@@ -88,6 +88,13 @@ void Labyrinthe_SaveJSON(struct Labyrinthe *labyrinthe) {
             struct LabyrintheNode *node = grid[x][y];
             if (!node) {
                 node = LabyrintheNode_CreateCoords(x,y,9999);
+                if (!node) {
+                    fprintf(stderr, "ERREUR: allocation node placeholder %dx%d",x,y);
+                    for (int k = 0; k < placeholderCount; k++) { if (placeholders[k]) { free(placeholders[k]); } }
+                    free(placeholders);
+                    for (int k = 0; k < width * height; k++) { free(grid[k]); }
+                    free(grid); fclose(file); return;
+                }
                 grid[x][y] = node;
                 if (placeholders) { placeholders[placeholderCount++] = node; }
             }
@@ -108,7 +115,7 @@ void Labyrinthe_SaveJSON(struct Labyrinthe *labyrinthe) {
 
     fprintf(file, "\n  ]\n}\n");
 
-    for (int i=0; i < placeholderCount; i++) { free(placeholders[i]);}
+    for (int k=0; k < placeholderCount; k++) { if (placeholders[k]) { free(placeholders[k]); }}
     free(placeholders);
     for (int x=0; x < width; x++) { free(grid[x]); }
     free(grid);
