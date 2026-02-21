@@ -5,4 +5,10 @@
 #ifndef LABYRINTHE_RANDOM_SOLVER_H
 #define LABYRINTHE_RANDOM_SOLVER_H
 
+struct RondomSolverData {
+    struct ListNode* pathSolved;
+    bool isPathSolvedListNodeCreated;
+    struct LabyrintheNode* node;
+};
+
 #endif //LABYRINTHE_RANDOM_SOLVER_H

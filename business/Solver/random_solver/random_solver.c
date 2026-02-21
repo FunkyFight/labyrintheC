@@ -10,61 +10,52 @@
 
 
 
+struct LabyrintheNode* getNodeInFront(struct LabyrintheNode* currentNode, int direction) {
+    switch(direction) {
+    case 0:
+        return currentNode->north;
+    case 1:
+        return currentNode->east;
+    case 2:
+        return currentNode->south;
+    case 3:
+        return currentNode->west;
+    }
+
+    return NULL;
+}
 
 
 
-
-struct LabyrintheNode* Rondom_Solver(struct LabyrintheNode* node)
+void Rondom_Solver(struct RondomSolverData* data)
 {
-    if (node->type == START) {
-        int aleatoire = rand() % (4);
-        switch (aleatoire)
-        {
-            case 0:
-                if (node->north->type == CELL)
-                {
-                    node->color = (SDL_Color){0, 255, 0, 255};
-                    node->north = Rondom_Solver(node->north);
-                }
-                break;
-            case 1:
-                if (node->west->type == CELL)
-                {
-                    node->color = (SDL_Color){0, 255, 0, 255};
-                    node->west = Rondom_Solver(node->west);
-                }
-                break;
-            case 2:
-                if (node->east->type == CELL)
-                {
-                    node->color = (SDL_Color){0, 255, 0, 255};
-                    node->east = Rondom_Solver(node->east);
-                }
-                break;
-            case 3:
-                if (node->south->type == CELL)
-                {
-                    node->color = (SDL_Color){0, 255, 0, 255};
-                    node->south = Rondom_Solver(node->south);
-                }
-                break;
-            default:
-                fprintf(stderr, "Erreur: type de node inattendu (%d)\n", node->type);
-                exit(EXIT_FAILURE);
-        }
-
-
-
-    }
-    else if (node->type == END)
-    {
-        printf("GG");
-
-    }
-    else
+    int rd_num = rand() % 4;
+    if (data->node->type != START && data->isPathSolvedListNodeCreated == false)
     {
         fprintf(stderr, "Erreur: type de node inattendu (%d)\n", node->type);
         exit(EXIT_FAILURE);
     }
-    return node;
+    if (!data->isPathSolvedListNodeCreated)
+    {
+        data->pathSolver = newListNode (data->pathSolver, 1);
+        data->isPathSolvedListNodeCreated = true;
+    }
+    if  (data->node->type == END)
+    {
+        printf("GG t'as terminier le labytrinth\n");
+        return;
+    }
+    struct LabyrintheNode* nodeInFront = getNodeInFront(data->node,rd_num);
+    if (nodeInFront->type == WALL)
+    {
+        rd_num = rand() % 4;
+        //addToListNode(data->pathSolved,);
+        Rondom_Solver(data);
+        return;
+    }
+
+    //tout ce qui ce passe en bas sont sur les cellules
+    data->node = nodeInFront;
+    addToListNode(data->pathSolved, nodeInFront);
+    Rondom_Solver(data);
 }

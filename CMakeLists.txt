@@ -27,6 +27,7 @@ add_executable(labyrinthe main.c
         main.h
         generation/RDFS/rdfsGeneration.c
         generation/nodeListTool.c
+        business/Solver/right_solver/right_solver.h
 )
 
 target_include_directories(labyrinthe PRIVATE
