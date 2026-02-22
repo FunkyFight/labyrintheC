@@ -7,8 +7,9 @@
 #include <stdlib.h>
 #include <time.h>
 #include "../../../types.h"
+#include "../../../generation/nodeListTool.h"
 
-
+/*
 struct LabyrintheNode* getNodeInFront(struct LabyrintheNode* currentNode, int direction) {
     switch(direction) {
     case 0:
@@ -36,7 +37,7 @@ void Right_Solver(struct RightSolverData* data )
     }
     if (!data->isPathSolvedListNodeCreated)
     {
-        data->pathSolver = newListNode (data->pathSolver, 1);
+        data->pathSolved = newListNode (data->pathSolver, 1);
         data->isPathSolvedListNodeCreated = true;
     }
     if  (data->node->type == END)
@@ -58,4 +59,4 @@ void Right_Solver(struct RightSolverData* data )
     addToListNode(data->pathSolved, nodeInFront);
     Right_Solver(data);
 
-}
+}*/

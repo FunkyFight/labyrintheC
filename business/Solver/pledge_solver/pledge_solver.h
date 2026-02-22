@@ -4,6 +4,7 @@
 
 #ifndef LABYRINTHE_PLEDGE_SOLVER_H
 #define LABYRINTHE_PLEDGE_SOLVER_H
+#include <stdbool.h>
 
 
 struct PledgeSolverData {

@@ -37,6 +37,11 @@ add_executable(labyrinthe main.c
         utils/node_sort.h
         business/Solver/tremaux_solveur/tremaux_solver.c
         business/Solver/tremaux_solveur/tremaux_solver.h
+        business/Solver/right_solver/right_solver.c
+        business/Solver/right_solver/right_solver.h
+        business/Solver/random_solver/random_solver.h
+        business/Solver/random_solver/random_solver.c
+        business/Solver/pledge_solver/pledge_solver.c
 )
 
 target_include_directories(labyrinthe PRIVATE

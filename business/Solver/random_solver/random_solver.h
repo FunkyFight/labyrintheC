@@ -4,6 +4,7 @@
 
 #ifndef LABYRINTHE_RANDOM_SOLVER_H
 #define LABYRINTHE_RANDOM_SOLVER_H
+#include <stdbool.h>
 
 struct RondomSolverData {
     struct ListNode* pathSolved;

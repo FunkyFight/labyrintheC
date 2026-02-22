@@ -5,7 +5,7 @@
 #include "pledge_solver.h"
 
 #include <stdio.h>
-
+#include "../../../generation/nodeListTool.h"
 #include "../../../types.h"
 
 
@@ -56,7 +56,7 @@ boolean getCurrentNodeLeft(struct LabyrintheNode* currentNode,int direction)
 
 boolean getWallInFront(struct LabyrintheNode* currentNode,int direction)
 {
-    if(getNodeInFront(currentNode,directiona)->type == WALL)
+    if(getNodeInFront(currentNode,direction)->type == WALL)
     {
         return true;
     }
@@ -73,12 +73,12 @@ void Pledge_Solver(struct PledgeSolverData* data )
 {
     if (data->node->type != START && data->isPathSolvedListNodeCreated == false)
     {
-        fprintf(stderr, "Erreur: type de node inattendu (%d)\n", node->type);
+        fprintf(stderr, "Erreur: type de node inattendu (%d)\n", data->node->type);
         exit(EXIT_FAILURE);
     }
     if (!data->isPathSolvedListNodeCreated)
     {
-        data->pathSolver = newListNode (data->pathSolver, 1);
+        data->pathSolved = newListNode (1);
         data->isPathSolvedListNodeCreated = true;
     }
     if  (data->node->type == END)

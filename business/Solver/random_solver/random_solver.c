@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "../../../types.h"
+#include "../../../generation/nodeListTool.h"
 
 
 
@@ -32,12 +33,12 @@ void Rondom_Solver(struct RondomSolverData* data)
     int rd_num = rand() % 4;
     if (data->node->type != START && data->isPathSolvedListNodeCreated == false)
     {
-        fprintf(stderr, "Erreur: type de node inattendu (%d)\n", node->type);
+        fprintf(stderr, "Erreur: type de node inattendu (%d)\n", data->node->type);
         exit(EXIT_FAILURE);
     }
     if (!data->isPathSolvedListNodeCreated)
     {
-        data->pathSolver = newListNode (data->pathSolver, 1);
+        data->pathSolved = newListNode(1);
         data->isPathSolvedListNodeCreated = true;
     }
     if  (data->node->type == END)

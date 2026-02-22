@@ -2,10 +2,12 @@
 // Created by rapha on 16/02/2026.
 //
 
+#include  "right_solver.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include "../../../types.h"
+#include "../../../generation/nodeListTool.h"
 
 
 struct LabyrintheNode* getNodeInFront(struct LabyrintheNode* currentNode, int direction) {
@@ -30,12 +32,12 @@ void Right_Solver(struct RightSolverData* data )
 {
     if (data->node->type != START && data->isPathSolvedListNodeCreated == false)
     {
-        fprintf(stderr, "Erreur: type de node inattendu (%d)\n", node->type);
+        fprintf(stderr, "Erreur: type de node inattendu (%d)\n", data->node->type);
         exit(EXIT_FAILURE);
     }
     if (!data->isPathSolvedListNodeCreated)
     {
-        data->pathSolver = newListNode (data->pathSolver, 1);
+        data->pathSolved = newListNode (1);
         data->isPathSolvedListNodeCreated = true;
     }
     if  (data->node->type == END)
