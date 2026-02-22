@@ -9,8 +9,13 @@
 #include "../gameobjects/gameobject_manager.h"
 #include "../gameobjects/LabyrinthCell/gameobject_labyrinthe_cell.h"
 
+// Forward declarations
+struct ListNode;
+struct LabyrintheNode;
+struct Labyrinthe;
+
 void GameFacade_ShowInstantlyLabyrinthe(struct Labyrinthe* labyrinthe);
-static void GameFacade_ShowNode(struct Game* game, struct LabyrintheNode* node, int cellSx, int cellY);
+struct LabyrintheNode* GameFacade_Labyrinthe_Tab_To_Nodes(struct ListNode* listNodes);
 void DebugAndTest();
 
 #endif //LABYRINTHE_GAMEFACADE_H

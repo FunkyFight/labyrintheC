@@ -8,9 +8,34 @@
 #include <SDL3/SDL.h>
 #include <rpc.h>
 #include <glib.h>
+#include "gameobjects/LabyrinthCell/gameobject_labyrinthe_cell.h"
 
 
+/**
+ * Structures visualisation step by step de la génération
+ */
 
+enum StepType
+{
+    HighlightExistingNode,
+    SetNodeVisibility
+};
+
+struct HighlightExistingStepType {
+    int x, y;
+    SDL_Color color;
+};
+
+struct SetNodeVisibilityStepType {
+    int x, y;
+    bool visible;
+};
+
+struct GenerationStep {
+    void* step;
+    enum StepType stepType;
+    int iteration; // C'est l'itération numéro combien de la génération ?
+};
 
 /**
  * Structures Labyrinthe
@@ -36,6 +61,8 @@ struct LabyrintheNode {
 
     enum LabyrintheNodeType type;
     int travel_cost;
+
+    struct GameObjectLabyrintheCell* associatedGameObject;
 
     bool visited;
 };
