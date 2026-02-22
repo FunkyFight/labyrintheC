@@ -1,1 +1,5 @@
-cmake-build-debug/
+*.exe
+*.obj
+CMakeFiles/
+CMakeCache.txt
+cmake-build-debug
