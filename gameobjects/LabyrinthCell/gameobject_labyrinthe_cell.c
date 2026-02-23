@@ -31,7 +31,7 @@ struct GameObjectLabyrintheCell* GameObject_LabyrintheCell_Create(struct Game *g
     cell->color = color;
     cell->c = c;
     cell->valueChar = valueChar;
-    cell->isVisible = true;
+    cell->isVisible = false;
     cell->associatedLabyrintheNode = associatedLabyrintheNode;
     associatedLabyrintheNode->associatedGameObject = cell;
 
@@ -49,6 +49,8 @@ void GameObject_LabyrintheCell_Draw(void *gameObjectContainer) {
 
     struct GameObjectLabyrintheCell *gameObjectLabyrintheCell = (struct GameObjectLabyrintheCell *)gameObjectContainer;
 
+    if(!gameObjectLabyrintheCell->isVisible) return;
+
     SDL_FRect rect;
     rect.x = gameObjectLabyrintheCell->gameObject->x;
     rect.y = gameObjectLabyrintheCell->gameObject->y;
@@ -56,7 +58,7 @@ void GameObject_LabyrintheCell_Draw(void *gameObjectContainer) {
     rect.h = gameObjectLabyrintheCell->c;
 
     SDL_Renderer *renderer = gameObjectLabyrintheCell->gameObject->game->renderer;
-    SDL_SetRenderDrawColor(renderer, gameObjectLabyrintheCell->color.r, gameObjectLabyrintheCell->color.g, gameObjectLabyrintheCell->color.b, gameObjectLabyrintheCell->color.a);
+    SDL_SetRenderDrawColor(renderer, gameObjectLabyrintheCell->color.r, gameObjectLabyrintheCell->color.g, gameObjectLabyrintheCell->color.b, (gameObjectLabyrintheCell->isVisible ? gameObjectLabyrintheCell->color.a : 0));
 
     // @TODO: ECRIRE LE CARACTERE DE VALEUR
 

@@ -25,6 +25,7 @@ add_executable(labyrinthe main.c
         facade/GameFacade.c
         facade/GameFacade.h
         main.h
+        generation/RDFS/rdfsGeneration.c
         generation/nodeListTool.c
         generation/nodeListTool.h
         generation/RDFS/rdfsGeneration.c
@@ -42,6 +43,12 @@ add_executable(labyrinthe main.c
         business/Solver/random_solver/random_solver.h
         business/Solver/random_solver/random_solver.c
         business/Solver/pledge_solver/pledge_solver.c
+        events/keyboard_events.c
+        events/keyboard_events.h
+        business/generationSteps/GenerationSteps.c
+        utils/SFX.c
+        utils/SFX.h
+
 )
 
 target_include_directories(labyrinthe PRIVATE
@@ -62,3 +69,5 @@ target_link_libraries(labyrinthe PRIVATE
         ${SDL3_LIBRARIES}
         rpcrt4
 )
+
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

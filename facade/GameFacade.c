@@ -9,11 +9,16 @@
 #include "../utils/node_sort.h"
 #include "../labyrinthe_save_load/labyrinthe_save.h"
 #include "../labyrinthe_save_load/labyrinthe_load.h"
+#include "../business/generationSteps/GenerationSteps.h"
 
 static void GameFacade_ShowNode(struct Game* game, struct LabyrintheNode* node, int cellSx, int cellSy);
 static void GameFacade_ResetVisited(struct LabyrintheNode* node);
 static bool Labyrinthe_ValidateGrid(struct Labyrinthe* labyrinthe);
 static void Labyrinthe_FreeGrid(struct Labyrinthe* labyrinthe);
+
+AlgoGenFunctionContainer* genFunctions[] = {
+        &(AlgoGenFunctionContainer){.gen_algorithm = make_rdfs_labyrinthe}
+};
 
 void DebugAndTest()
 {
@@ -24,15 +29,28 @@ void DebugAndTest()
      * Donc pas besoin de toucher au main !
      */
 
-    //struct ListNode* listNode = fullFillLabyrintheGeneration(50, 50, 1, NULL);
-    struct ListNode* listNode = fullFillLabyrintheGeneration(50, 50, 0, LabyrintheNode_CreateCoords(3,1,randomTravelCost()));
+    // Créer le tableau de steps pour enregistrer la génération
+    struct GenerationStep** steps = GenerationSteps_Create();
+
+    struct ListNode* listNode = genFunctions[0]->gen_algorithm(50, 50, LabyrintheNode_CreateCoords(27,27,randomTravelCost()), steps);
+
     struct LabyrintheNode* rootNode = GameFacade_Labyrinthe_Tab_To_Nodes(listNode);
 
-    struct Labyrinthe labyrinthe = {
-        .firstNode = rootNode,
-        .width = 50,
-        .height = 50
-    };
+    // IMPORTANT: Allouer le labyrinthe sur le HEAP, pas sur la stack !
+    struct Labyrinthe* labyrinthe = malloc(sizeof(struct Labyrinthe));
+    labyrinthe->firstNode = rootNode;
+    labyrinthe->width = 50;
+    labyrinthe->height = 50;
+
+    Labyrinthe_ValidateGrid(labyrinthe);
+
+    // Stocker les steps dans le game pour pouvoir les rejouer
+    if(currentGame != NULL) {
+        currentGame->generationSteps = steps;
+    }
+
+    // Afficher le labyrinthe complet
+    GameFacade_ShowInstantlyLabyrinthe(labyrinthe);
 
     Labyrinthe_SaveJSON(&labyrinthe);
 
@@ -53,48 +71,114 @@ struct LabyrintheNode* GameFacade_Labyrinthe_Tab_To_Nodes(struct ListNode* listN
 {
     if(listNodes == NULL || listNodes->size == 0) return NULL;
 
-    // Connecter tous les nœuds en grille basé sur leurs coordonnées
-    for(int i = 0; i < listNodes->size; i++)
+    listNodes->nodeTab[listNodes->size] = NULL;
+
+    for(int i = 0; listNodes->nodeTab[i] != NULL; i++) // Itération "style string"
     {
         struct LabyrintheNode* current = listNodes->nodeTab[i];
-        if(current == NULL) continue;
 
-        // Chercher et connecter les voisins
-        for(int j = 0; j < listNodes->size; j++)
+        for(int j = 0; listNodes->nodeTab[j] != NULL; j++)
         {
             if(i == j) continue;
             struct LabyrintheNode* other = listNodes->nodeTab[j];
-            if(other == NULL) continue;
 
-            // Voisin NORD (même x, y-1)
-            if(other->x == current->x && other->y == current->y - 1) {
-                current->north = other;
-            }
-            // Voisin SUD (même x, y+1)
-            else if(other->x == current->x && other->y == current->y + 1) {
-                current->south = other;
-            }
-            // Voisin OUEST (x-1, même y)
-            else if(other->x == current->x - 1 && other->y == current->y) {
-                current->west = other;
-            }
-            // Voisin EST (x+1, même y)
-            else if(other->x == current->x + 1 && other->y == current->y) {
-                current->east = other;
-            }
+            if(other->x == current->x && other->y == current->y - 1) current->north = other;
+            else if(other->x == current->x && other->y == current->y + 1) current->south = other;
+            else if(other->x == current->x - 1 && other->y == current->y) current->west = other;
+            else if(other->x == current->x + 1 && other->y == current->y) current->east = other;
         }
     }
 
-    // Retourner le nœud (0,0) comme racine
-    for(int i = 0; i < listNodes->size; i++)
+    for(int i = 0; listNodes->nodeTab[i] != NULL; i++)
     {
         if(listNodes->nodeTab[i]->x == 0 && listNodes->nodeTab[i]->y == 0) {
             return listNodes->nodeTab[i];
         }
     }
 
-    // Si pas de (0,0), retourner le premier nœud
     return listNodes->nodeTab[0];
+}
+
+bool is_node_already_in_list(struct ListNode* list, struct LabyrintheNode* node) {
+    for (int i = 0; i < list->size; i++) {
+        if (list->nodeTab[i] == node) {
+            return true; // Le nœud est déjà dans la liste !
+        }
+    }
+    return false;
+}
+
+struct ListNode* GameFacade_Labyrinthe_Nodes_To_Tab(struct LabyrintheNode* root) {
+    if (root == NULL) return NULL;
+
+    struct ListNode* list = malloc(sizeof(struct ListNode));
+    int capacity = 16;
+    list->nodeTab = malloc(capacity * sizeof(struct LabyrintheNode*));
+    list->size = 0;
+
+    list->nodeTab[list->size++] = root;
+
+    int current_index = 0;
+
+    while (current_index < list->size) {
+        struct LabyrintheNode* current = list->nodeTab[current_index];
+        struct LabyrintheNode* neighbors[4] = {current->north, current->south, current->east, current->west};
+
+        for (int j = 0; j < 4; j++) {
+            if (neighbors[j] != NULL && !is_node_already_in_list(list, neighbors[j])) {
+                if (list->size >= capacity) {
+                    capacity *= 2;
+                    list->nodeTab = realloc(list->nodeTab, capacity * sizeof(struct LabyrintheNode*));
+                }
+                list->nodeTab[list->size++] = neighbors[j];
+            }
+        }
+        current_index++;
+    }
+
+    // Ajouter un NULL à la fin pour marquer la fin du tableau
+    if (list->size >= capacity) {
+        capacity++;
+        list->nodeTab = realloc(list->nodeTab, capacity * sizeof(struct LabyrintheNode*));
+    }
+    list->nodeTab[list->size] = NULL;
+
+    return list;
+}
+
+
+void GameFacade_ResetLabyrintheDisplay(struct LabyrintheNode* rootNode) {
+    if(rootNode == NULL) return;
+
+    struct ListNode* nodes = GameFacade_Labyrinthe_Nodes_To_Tab(rootNode);
+    if(nodes == NULL) return;
+
+    // Cacher toutes les cellules
+    for(int i = 0; i < nodes->size; i++) {
+        struct LabyrintheNode* node = nodes->nodeTab[i];
+        if(node != NULL && node->associatedGameObject != NULL) {
+            node->associatedGameObject->isVisible = false;
+        }
+    }
+
+    freeListNode(nodes);
+}
+
+void GameFacade_MakeAllCellsVisible(struct LabyrintheNode* rootNode) {
+    if(rootNode == NULL) return;
+
+    struct ListNode* nodes = GameFacade_Labyrinthe_Nodes_To_Tab(rootNode);
+    if(nodes == NULL) return;
+
+    // Rendre toutes les cellules visibles
+    for(int i = 0; i < nodes->size; i++) {
+        struct LabyrintheNode* node = nodes->nodeTab[i];
+        if(node != NULL && node->associatedGameObject != NULL) {
+            node->associatedGameObject->isVisible = true;
+        }
+    }
+
+    freeListNode(nodes);
 }
 
 static bool Labyrinthe_ValidateGrid(struct Labyrinthe* labyrinthe) {
@@ -316,8 +400,11 @@ void GameFacade_ShowInstantlyLabyrinthe(struct Labyrinthe* labyrinthe)
 
     GameFacade_ResetVisited(labyrinthe->firstNode);
 
-    // Parcours
+    // Parcours et création des GameObjects
     GameFacade_ShowNode(game, labyrinthe->firstNode, cellSx, cellSy);
+
+    // Rendre toutes les cellules visibles pour l'affichage instantané
+    GameFacade_MakeAllCellsVisible(labyrinthe->firstNode);
 }
 
 static void GameFacade_ResetVisited(struct LabyrintheNode* node) {
