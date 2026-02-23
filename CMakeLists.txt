@@ -27,11 +27,28 @@ add_executable(labyrinthe main.c
         main.h
         generation/RDFS/rdfsGeneration.c
         generation/nodeListTool.c
+        generation/nodeListTool.h
+        generation/RDFS/rdfsGeneration.c
+        generation/RDFS/rdfsGeneration.h
+        labyrinthe_save_load/labyrinthe_load.h
+        labyrinthe_save_load/labyrinthe_load.c
+        labyrinthe_save_load/labyrinthe_save.h
+        labyrinthe_save_load/labyrinthe_save.c
+        utils/node_sort.c
+        utils/node_sort.h
+        business/Solver/tremaux_solveur/tremaux_solver.c
+        business/Solver/tremaux_solveur/tremaux_solver.h
+        business/Solver/right_solver/right_solver.c
+        business/Solver/right_solver/right_solver.h
+        business/Solver/random_solver/random_solver.h
+        business/Solver/random_solver/random_solver.c
+        business/Solver/pledge_solver/pledge_solver.c
         events/keyboard_events.c
         events/keyboard_events.h
         business/generationSteps/GenerationSteps.c
         utils/SFX.c
         utils/SFX.h
+
 )
 
 target_include_directories(labyrinthe PRIVATE

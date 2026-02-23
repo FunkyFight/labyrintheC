@@ -91,19 +91,27 @@ struct ListNode* rdfsGeneration(struct LabyrintheNode* nodeStart, int height, in
             int choise = rand() % possibilities->size;
             LastVisitedNode = possibilities->nodeTab[choise];
 
-            // Enregistrer la création du nouveau noeud
-            if (steps && stepIndex) {
-                steps[(*stepIndex)++] = GenerationSteps_CreateSetNodeVisibilityStep(LastVisitedNode->x, LastVisitedNode->y, true, iteration);
-                steps[(*stepIndex)++] = GenerationSteps_CreateHighlightExistingStepStep(LastVisitedNode->x, LastVisitedNode->y, visitingColor, iteration);
-            }
+            if (LastVisitedNode) {
+                // Enregistrer la création du nouveau noeud
+                if (steps && stepIndex) {
+                    steps[(*stepIndex)++] = GenerationSteps_CreateSetNodeVisibilityStep(LastVisitedNode->x,
+                                                                                        LastVisitedNode->y, true,
+                                                                                        iteration);
+                    steps[(*stepIndex)++] = GenerationSteps_CreateHighlightExistingStepStep(LastVisitedNode->x,
+                                                                                            LastVisitedNode->y,
+                                                                                            visitingColor, iteration);
+                }
 
-            addToListNode(roadList, LastVisitedNode);
-            addToListNode(roadInTakeList, LastVisitedNode);
+                addToListNode(roadList, LastVisitedNode);
+                addToListNode(roadInTakeList, LastVisitedNode);
 
-            // Marquer l'ancien noeud comme visité (vert)
-            if (steps && stepIndex && roadInTakeList->size > 1) {
-                struct LabyrintheNode* previousNode = roadInTakeList->nodeTab[roadInTakeList->size-2];
-                steps[(*stepIndex)++] = GenerationSteps_CreateHighlightExistingStepStep(previousNode->x, previousNode->y, visitedColor, iteration);
+                // Marquer l'ancien noeud comme visité (vert)
+                if (steps && stepIndex && roadInTakeList->size > 1) {
+                    struct LabyrintheNode *previousNode = roadInTakeList->nodeTab[roadInTakeList->size - 2];
+                    steps[(*stepIndex)++] = GenerationSteps_CreateHighlightExistingStepStep(previousNode->x,
+                                                                                            previousNode->y,
+                                                                                            visitedColor, iteration);
+                }
             }
         }
         freeListNode(possibilities);
@@ -223,6 +231,7 @@ struct ListNode* fullFillLabyrintheGeneration(int height,int width,int isPerfect
 
     free(endXY);
 
+    addToListNode(chemins,NULL);
     return chemins;
 }
 

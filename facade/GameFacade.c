@@ -7,6 +7,8 @@
 #include "../business/nodes/labyrinthe_node.h"
 #include "../generation/RDFS/rdfsGeneration.h"
 #include "../utils/node_sort.h"
+#include "../labyrinthe_save_load/labyrinthe_save.h"
+#include "../labyrinthe_save_load/labyrinthe_load.h"
 #include "../business/generationSteps/GenerationSteps.h"
 
 static void GameFacade_ShowNode(struct Game* game, struct LabyrintheNode* node, int cellSx, int cellSy);
@@ -50,9 +52,19 @@ void DebugAndTest()
     // Afficher le labyrinthe complet
     GameFacade_ShowInstantlyLabyrinthe(labyrinthe);
 
-    printf("Labyrinthe généré et affiché.\n");
-    printf("Appuyez sur ESPACE pour rejouer la génération étape par étape.\n");
+    Labyrinthe_SaveJSON(&labyrinthe);
 
+    bool ok = Labyrinthe_ValidateGrid(&labyrinthe);
+    //GameFacade_ShowInstantlyLabyrinthe(&labyrinthe);
+
+    struct Labyrinthe *lab = Labyrinthe_LoadJSON("../data/labyrinthe.json");
+    if (!lab) {printf("ERREUR pas de labyrinthe");}
+    if (!lab->firstNode) {
+        printf("ERREUR: firstNode est NULL\n");
+    }
+    printf("FirstNode: %p (%d,%d)\n", lab->firstNode, lab->firstNode->x, lab->firstNode->y);
+
+    GameFacade_ShowInstantlyLabyrinthe(lab);
 }
 
 struct LabyrintheNode* GameFacade_Labyrinthe_Tab_To_Nodes(struct ListNode* listNodes)
