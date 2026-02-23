@@ -49,12 +49,12 @@ struct Labyrinthe* Labyrinthe_LoadJSON(const char *file_path) {
     }
 
     // Lire les nodes
-    int x, y; char typeStr[16];
+    int x, y, cost; char typeStr[16];
 
     while (fgets(line, sizeof(line), file)) {
         if (sscanf(line,
-            " { \"x\": %d , \"y\": %d , \"type\": \"%15[^\"]\"",
-            &x,&y, typeStr) == 3) {
+            " { \"x\": %d , \"y\": %d , \"type\": \"%15[^\"]\", \"cost\": %d",
+            &x,&y, typeStr, &cost) == 4) {
 
             if (x < 0 || x >= width || y < 0 || y >= height) {
                 fprintf(stderr, "Node hors bornes ignoré: x=%d y=%d\n", x, y);
@@ -66,7 +66,7 @@ struct Labyrinthe* Labyrinthe_LoadJSON(const char *file_path) {
             else if (strcmp(typeStr, "START") == 0) type = START;
             else if (strcmp(typeStr, "END") == 0) type = END;
 
-            struct LabyrintheNode *node = LabyrintheNode_CreateCoords(x,y, 1);
+            struct LabyrintheNode *node = LabyrintheNode_CreateCoords(x,y, cost);
             if (!node) { fprintf(stderr, "Erreur de l'allocation du Node: x=%d y=%d\n", x, y); continue; }
             node->type = type;
             grid[x][y] = node;
