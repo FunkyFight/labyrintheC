@@ -405,9 +405,6 @@ void GameFacade_ShowInstantlyLabyrinthe(struct Labyrinthe* labyrinthe)
 
     // Parcours et création des GameObjects
     GameFacade_ShowNode(game, labyrinthe->firstNode, cellSx, cellSy);
-
-    // Rendre toutes les cellules visibles pour l'affichage instantané
-    GameFacade_MakeAllCellsVisible(labyrinthe->firstNode);
 }
 
 static void GameFacade_ResetVisited(struct LabyrintheNode* node) {
