@@ -57,6 +57,7 @@ void DebugAndTest()
     bool ok = Labyrinthe_ValidateGrid(labyrinthe);
     //GameFacade_ShowInstantlyLabyrinthe(&labyrinthe);
 
+    /*
     struct Labyrinthe *lab = Labyrinthe_LoadJSON("../data/labyrinthe.json");
     if (!lab) {printf("ERREUR pas de labyrinthe");}
     if (!lab->firstNode) {
@@ -64,7 +65,9 @@ void DebugAndTest()
     }
     printf("FirstNode: %p (%d,%d)\n", lab->firstNode, lab->firstNode->x, lab->firstNode->y);
 
+
     GameFacade_ShowInstantlyLabyrinthe(lab);
+    */
 }
 
 struct LabyrintheNode* GameFacade_Labyrinthe_Tab_To_Nodes(struct ListNode* listNodes)
