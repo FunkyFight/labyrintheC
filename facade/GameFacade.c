@@ -52,9 +52,9 @@ void DebugAndTest()
     // Afficher le labyrinthe complet
     GameFacade_ShowInstantlyLabyrinthe(labyrinthe);
 
-    Labyrinthe_SaveJSON(&labyrinthe);
+    Labyrinthe_SaveJSON(labyrinthe);
 
-    bool ok = Labyrinthe_ValidateGrid(&labyrinthe);
+    bool ok = Labyrinthe_ValidateGrid(labyrinthe);
     //GameFacade_ShowInstantlyLabyrinthe(&labyrinthe);
 
     struct Labyrinthe *lab = Labyrinthe_LoadJSON("../data/labyrinthe.json");

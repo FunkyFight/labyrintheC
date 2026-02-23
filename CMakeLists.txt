@@ -43,6 +43,8 @@ add_executable(labyrinthe main.c
         business/Solver/random_solver/random_solver.h
         business/Solver/random_solver/random_solver.c
         business/Solver/pledge_solver/pledge_solver.c
+        business/Solver/solver_utils.c
+        business/Solver/solver_utils.h
         events/keyboard_events.c
         events/keyboard_events.h
         business/generationSteps/GenerationSteps.c
