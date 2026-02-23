@@ -108,7 +108,7 @@ void Labyrinthe_SaveJSON(struct Labyrinthe *labyrinthe) {
             }
 
             if (firstNodeWritten) fprintf(file, ",\n");
-            fprintf(file, "    { \"x\": %d, \"y\": %d, \"type\": \"%s\" }", x, y, typeStr);
+            fprintf(file, "    { \"x\": %d, \"y\": %d, \"type\": \"%s\", \"cost\": %d }", x, y, typeStr, node->travel_cost);
             firstNodeWritten = true;
         }
     }
