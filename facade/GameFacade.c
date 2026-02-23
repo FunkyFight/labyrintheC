@@ -52,11 +52,12 @@ void DebugAndTest()
     // Afficher le labyrinthe complet
     GameFacade_ShowInstantlyLabyrinthe(labyrinthe);
 
-    Labyrinthe_SaveJSON(&labyrinthe);
+    Labyrinthe_SaveJSON(labyrinthe);
 
-    bool ok = Labyrinthe_ValidateGrid(&labyrinthe);
+    bool ok = Labyrinthe_ValidateGrid(labyrinthe);
     //GameFacade_ShowInstantlyLabyrinthe(&labyrinthe);
 
+    /*
     struct Labyrinthe *lab = Labyrinthe_LoadJSON("../data/labyrinthe.json");
     if (!lab) {printf("ERREUR pas de labyrinthe");}
     if (!lab->firstNode) {
@@ -64,7 +65,9 @@ void DebugAndTest()
     }
     printf("FirstNode: %p (%d,%d)\n", lab->firstNode, lab->firstNode->x, lab->firstNode->y);
 
+
     GameFacade_ShowInstantlyLabyrinthe(lab);
+    */
 }
 
 struct LabyrintheNode* GameFacade_Labyrinthe_Tab_To_Nodes(struct ListNode* listNodes)
@@ -402,9 +405,6 @@ void GameFacade_ShowInstantlyLabyrinthe(struct Labyrinthe* labyrinthe)
 
     // Parcours et création des GameObjects
     GameFacade_ShowNode(game, labyrinthe->firstNode, cellSx, cellSy);
-
-    // Rendre toutes les cellules visibles pour l'affichage instantané
-    GameFacade_MakeAllCellsVisible(labyrinthe->firstNode);
 }
 
 static void GameFacade_ResetVisited(struct LabyrintheNode* node) {
