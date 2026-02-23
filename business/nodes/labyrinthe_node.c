@@ -18,14 +18,8 @@ struct LabyrintheNode* LabyrintheNode_Create() {
 }
 
 struct LabyrintheNode* LabyrintheNode_CreateCoords(int x, int y, int travel_cost) {
-    struct LabyrintheNode* node;
-    node = malloc(sizeof(struct LabyrintheNode));
+    struct LabyrintheNode* node = LabyrintheNode_Create();
 
-    node->north = NULL;
-    node->south = NULL;
-    node->east = NULL;
-    node->west = NULL;
-    node->visited = false;
     node->x = x;
     node->y = y;
     node->travel_cost = travel_cost;

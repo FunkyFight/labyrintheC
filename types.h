@@ -99,7 +99,15 @@ struct Game {
 
     bool is_generation_steps_displayer_running;
     struct GenerationStep** generationSteps; // Étapes de générations pouvant être display quand on presse SPACE
+
+
+    // Algos
+    struct ListNode* (*gen_algorithm)(int height,int width, struct LabyrintheNode* starter, struct GenerationStep** steps);
 };
+
+typedef struct AlgoGenFunctionContainer {
+    struct ListNode* (*gen_algorithm)(int height,int width, struct LabyrintheNode* starter, struct GenerationStep** steps);
+} AlgoGenFunctionContainer;
 
 struct GameObject {
     GUID guid;

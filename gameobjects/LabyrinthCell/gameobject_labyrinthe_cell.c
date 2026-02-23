@@ -31,7 +31,7 @@ struct GameObjectLabyrintheCell* GameObject_LabyrintheCell_Create(struct Game *g
     cell->color = color;
     cell->c = c;
     cell->valueChar = valueChar;
-    cell->isVisible = true;
+    cell->isVisible = false;
     cell->associatedLabyrintheNode = associatedLabyrintheNode;
     associatedLabyrintheNode->associatedGameObject = cell;
 
@@ -48,6 +48,8 @@ void GameObject_LabyrintheCell_Destroy(void* gameObjectContainer) {
 void GameObject_LabyrintheCell_Draw(void *gameObjectContainer) {
 
     struct GameObjectLabyrintheCell *gameObjectLabyrintheCell = (struct GameObjectLabyrintheCell *)gameObjectContainer;
+
+    if(!gameObjectLabyrintheCell->isVisible) return;
 
     SDL_FRect rect;
     rect.x = gameObjectLabyrintheCell->gameObject->x;

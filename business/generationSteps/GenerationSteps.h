@@ -8,7 +8,7 @@
 #include <SDL3/SDL_pixels.h>
 #include "../../types.h"
 
-struct GenerationStep *GenerationSteps_Create();
+struct GenerationStep **GenerationSteps_Create();
 void GenerationSteps_Free(struct GenerationStep** strct);
 struct GenerationStep *GenerationSteps_CreateSetNodeVisibilityStep(int x, int y, bool visible, int iteration);
 int displayGenerationSteps(void *data);

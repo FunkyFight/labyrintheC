@@ -7,11 +7,16 @@
 #include "../business/nodes/labyrinthe_node.h"
 #include "../generation/RDFS/rdfsGeneration.h"
 #include "../utils/node_sort.h"
+#include "../business/generationSteps/GenerationSteps.h"
 
 static void GameFacade_ShowNode(struct Game* game, struct LabyrintheNode* node, int cellSx, int cellSy);
 static void GameFacade_ResetVisited(struct LabyrintheNode* node);
 static bool Labyrinthe_ValidateGrid(struct Labyrinthe* labyrinthe);
 static void Labyrinthe_FreeGrid(struct Labyrinthe* labyrinthe);
+
+AlgoGenFunctionContainer* genFunctions[] = {
+        &(AlgoGenFunctionContainer){.gen_algorithm = make_rdfs_labyrinthe}
+};
 
 void DebugAndTest()
 {
@@ -22,18 +27,31 @@ void DebugAndTest()
      * Donc pas besoin de toucher au main !
      */
 
-    //struct ListNode* listNode = fullFillLabyrintheGeneration(50, 50, 1, NULL);
-    struct ListNode* listNode = fullFillLabyrintheGeneration(50, 50, 0, LabyrintheNode_CreateCoords(27,27,randomTravelCost()));
+    // Créer le tableau de steps pour enregistrer la génération
+    struct GenerationStep** steps = GenerationSteps_Create();
+
+    struct ListNode* listNode = genFunctions[0]->gen_algorithm(50, 50, LabyrintheNode_CreateCoords(27,27,randomTravelCost()), steps);
+
     struct LabyrintheNode* rootNode = GameFacade_Labyrinthe_Tab_To_Nodes(listNode);
 
-    struct Labyrinthe labyrinthe = {
-        .firstNode = rootNode,
-        .width = 50,
-        .height = 50
-    };
+    // IMPORTANT: Allouer le labyrinthe sur le HEAP, pas sur la stack !
+    struct Labyrinthe* labyrinthe = malloc(sizeof(struct Labyrinthe));
+    labyrinthe->firstNode = rootNode;
+    labyrinthe->width = 50;
+    labyrinthe->height = 50;
 
-    bool ok = Labyrinthe_ValidateGrid(&labyrinthe);
-    GameFacade_ShowInstantlyLabyrinthe(&labyrinthe);
+    Labyrinthe_ValidateGrid(labyrinthe);
+
+    // Stocker les steps dans le game pour pouvoir les rejouer
+    if(currentGame != NULL) {
+        currentGame->generationSteps = steps;
+    }
+
+    // Afficher le labyrinthe complet
+    GameFacade_ShowInstantlyLabyrinthe(labyrinthe);
+
+    printf("Labyrinthe généré et affiché.\n");
+    printf("Appuyez sur ESPACE pour rejouer la génération étape par étape.\n");
 
 }
 
@@ -106,10 +124,50 @@ struct ListNode* GameFacade_Labyrinthe_Nodes_To_Tab(struct LabyrintheNode* root)
         current_index++;
     }
 
+    // Ajouter un NULL à la fin pour marquer la fin du tableau
+    if (list->size >= capacity) {
+        capacity++;
+        list->nodeTab = realloc(list->nodeTab, capacity * sizeof(struct LabyrintheNode*));
+    }
+    list->nodeTab[list->size] = NULL;
+
     return list;
 }
 
 
+void GameFacade_ResetLabyrintheDisplay(struct LabyrintheNode* rootNode) {
+    if(rootNode == NULL) return;
+
+    struct ListNode* nodes = GameFacade_Labyrinthe_Nodes_To_Tab(rootNode);
+    if(nodes == NULL) return;
+
+    // Cacher toutes les cellules
+    for(int i = 0; i < nodes->size; i++) {
+        struct LabyrintheNode* node = nodes->nodeTab[i];
+        if(node != NULL && node->associatedGameObject != NULL) {
+            node->associatedGameObject->isVisible = false;
+        }
+    }
+
+    freeListNode(nodes);
+}
+
+void GameFacade_MakeAllCellsVisible(struct LabyrintheNode* rootNode) {
+    if(rootNode == NULL) return;
+
+    struct ListNode* nodes = GameFacade_Labyrinthe_Nodes_To_Tab(rootNode);
+    if(nodes == NULL) return;
+
+    // Rendre toutes les cellules visibles
+    for(int i = 0; i < nodes->size; i++) {
+        struct LabyrintheNode* node = nodes->nodeTab[i];
+        if(node != NULL && node->associatedGameObject != NULL) {
+            node->associatedGameObject->isVisible = true;
+        }
+    }
+
+    freeListNode(nodes);
+}
 
 static bool Labyrinthe_ValidateGrid(struct Labyrinthe* labyrinthe) {
     if(labyrinthe == NULL) return false;
@@ -330,8 +388,11 @@ void GameFacade_ShowInstantlyLabyrinthe(struct Labyrinthe* labyrinthe)
 
     GameFacade_ResetVisited(labyrinthe->firstNode);
 
-    // Parcours
+    // Parcours et création des GameObjects
     GameFacade_ShowNode(game, labyrinthe->firstNode, cellSx, cellSy);
+
+    // Rendre toutes les cellules visibles pour l'affichage instantané
+    GameFacade_MakeAllCellsVisible(labyrinthe->firstNode);
 }
 
 static void GameFacade_ResetVisited(struct LabyrintheNode* node) {
