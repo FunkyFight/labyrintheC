@@ -1,0 +1,49 @@
+//
+// Created by rapha on 16/02/2026.
+//
+
+#include  "right_solver.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "../../../types.h"
+#include "../../../generation/nodeListTool.h"
+#include "../solver_utils.h"
+
+
+
+
+void Right_Solver(struct RightSolverData* data )
+{
+    if (data->node->type != START && data->isPathSolvedListNodeCreated == false)
+    {
+        fprintf(stderr, "Erreur: type de node inattendu (%d)\n", data->node->type);
+        exit(EXIT_FAILURE);
+    }
+    if (!data->isPathSolvedListNodeCreated)
+    {
+        data->pathSolved = newListNode (1);
+        data->isPathSolvedListNodeCreated = true;
+    }
+    if  (data->node->type == END)
+    {
+        printf("GG t'as terminier le labytrinth\n");
+        return;
+    }
+    struct LabyrintheNode* nodeInFront = getNodeInFront(data->node,data->solverDirection);
+    if (nodeInFront->type == WALL)
+    {
+        data->solverDirection = (data->solverDirection+1)%4;
+        //addToListNode(data->pathSolved,);
+        Right_Solver(data);
+        return;
+    }
+
+    //tout ce qui ce passe en bas sont sur les cellules
+    data->node = nodeInFront;
+    addToListNode(data->pathSolved, nodeInFront);
+    Right_Solver(data);
+
+}
+
+

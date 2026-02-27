@@ -18,7 +18,8 @@
 enum StepType
 {
     HighlightExistingNode,
-    SetNodeVisibility
+    SetNodeVisibility,
+    End /* ULTRA IMPORTANT, A METTRE DANS LE TABLEAU A LA FIN, EQUIVALENT DU \0 POUR UNE CHAINE */
 };
 
 struct HighlightExistingStepType {
@@ -57,6 +58,7 @@ struct LabyrintheNode {
     struct LabyrintheNode* west;
 
     int x, y;
+    SDL_Color color;
 
     enum LabyrintheNodeType type;
     int travel_cost;
@@ -95,7 +97,18 @@ struct Game {
     bool is_running;
     GArray *gameobjects;
     struct Labyrinthe *labyrinthe;
+
+    bool is_generation_steps_displayer_running;
+    struct GenerationStep** generationSteps; // Étapes de générations pouvant être display quand on presse SPACE
+
+
+    // Algos
+    struct ListNode* (*gen_algorithm)(int height,int width, struct LabyrintheNode* starter, struct GenerationStep** steps);
 };
+
+typedef struct AlgoGenFunctionContainer {
+    struct ListNode* (*gen_algorithm)(int height,int width, struct LabyrintheNode* starter, struct GenerationStep** steps);
+} AlgoGenFunctionContainer;
 
 struct GameObject {
     GUID guid;
