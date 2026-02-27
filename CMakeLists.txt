@@ -30,10 +30,10 @@ add_executable(labyrinthe main.c
         generation/nodeListTool.h
         generation/RDFS/rdfsGeneration.c
         generation/RDFS/rdfsGeneration.h
-        labyrinthe_save_load/labyrinthe_load.h
-        labyrinthe_save_load/labyrinthe_load.c
-        labyrinthe_save_load/labyrinthe_save.h
-        labyrinthe_save_load/labyrinthe_save.c
+        labyrintheSaveLoad/labyrinthe_load.h
+        labyrintheSaveLoad/labyrinthe_load.c
+        labyrintheSaveLoad/labyrinthe_save.h
+        labyrintheSaveLoad/labyrinthe_save.c
         utils/node_sort.c
         utils/node_sort.h
         business/Solver/tremaux_solveur/tremaux_solver.c
