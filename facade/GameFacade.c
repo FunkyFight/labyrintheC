@@ -7,8 +7,8 @@
 #include "../business/nodes/labyrinthe_node.h"
 #include "../generation/RDFS/rdfsGeneration.h"
 #include "../utils/node_sort.h"
-#include "../labyrinthe_save_load/labyrinthe_save.h"
-#include "../labyrinthe_save_load/labyrinthe_load.h"
+#include "../labyrintheSaveLoad/labyrinthe_save.h"
+#include "../labyrintheSaveLoad/labyrinthe_load.h"
 
 static void GameFacade_ShowNode(struct Game* game, struct LabyrintheNode* node, int cellSx, int cellSy);
 static void GameFacade_ResetVisited(struct LabyrintheNode* node);
