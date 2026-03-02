@@ -25,14 +25,17 @@ add_executable(labyrinthe main.c
         facade/GameFacade.c
         facade/GameFacade.h
         main.h
+        generation/RDFS/rdfsGeneration.c
         generation/nodeListTool.c
         generation/nodeListTool.h
         generation/RDFS/rdfsGeneration.c
         generation/RDFS/rdfsGeneration.h
-        labyrinthe_save_load/labyrinthe_load.h
-        labyrinthe_save_load/labyrinthe_load.c
-        labyrinthe_save_load/labyrinthe_save.h
-        labyrinthe_save_load/labyrinthe_save.c
+        generation/RDFS/PrimGeneration.c
+        generation/RDFS/PrimGeneration.h
+        labyrintheSaveLoad/labyrinthe_load.h
+        labyrintheSaveLoad/labyrinthe_load.c
+        labyrintheSaveLoad/labyrinthe_save.h
+        labyrintheSaveLoad/labyrinthe_save.c
         utils/node_sort.c
         utils/node_sort.h
         business/Solver/tremaux_solveur/tremaux_solver.c
@@ -44,6 +47,14 @@ add_executable(labyrinthe main.c
         business/Solver/pledge_solver/pledge_solver.c
         business/Solver/gauchedroite_solver/gauchedroite_solver.c
         business/Solver/gauchedroite_solver/gauchedroite_solver.h
+        business/Solver/solver_utils.c
+        business/Solver/solver_utils.h
+        events/keyboard_events.c
+        events/keyboard_events.h
+        business/generationSteps/GenerationSteps.c
+        utils/SFX.c
+        utils/SFX.h
+
 )
 
 target_include_directories(labyrinthe PRIVATE
@@ -64,3 +75,5 @@ target_link_libraries(labyrinthe PRIVATE
         ${SDL3_LIBRARIES}
         rpcrt4
 )
+
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
