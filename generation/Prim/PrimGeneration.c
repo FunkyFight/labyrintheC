@@ -46,6 +46,7 @@ struct ListNode* PrimGeneration(struct LabyrintheNode* nodeStart, int height, in
             }
         }
 
+
         while (frontierList->size > 0) {
             int dirs[4][2] = {
                 {LastVisitedNode->x + 1, LastVisitedNode->y},

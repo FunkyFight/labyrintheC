@@ -30,6 +30,8 @@ add_executable(labyrinthe main.c
         generation/nodeListTool.h
         generation/RDFS/rdfsGeneration.c
         generation/RDFS/rdfsGeneration.h
+        generation/RDFS/PrimGeneration.c
+        generation/RDFS/PrimGeneration.h
         labyrintheSaveLoad/labyrinthe_load.h
         labyrintheSaveLoad/labyrinthe_load.c
         labyrintheSaveLoad/labyrinthe_save.h

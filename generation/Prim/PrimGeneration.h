@@ -19,3 +19,4 @@ struct ListNode* FillWithWalls(ListNode* chemins, int height, int width, int isP
 struct ListNode* fullFillLabyrintheGeneration(int height,int width,int isPerfect, struct LabyrintheNode* starter);
 
 #endif //LABYRINTHEC_PRIMGENERATION_H
+
