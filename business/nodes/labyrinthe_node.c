@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "../../types.h"
+#include "../../generation/nodeListTool.h"
 
 struct LabyrintheNode* LabyrintheNode_Create() {
     struct LabyrintheNode* node;
@@ -17,14 +18,8 @@ struct LabyrintheNode* LabyrintheNode_Create() {
 }
 
 struct LabyrintheNode* LabyrintheNode_CreateCoords(int x, int y, int travel_cost) {
-    struct LabyrintheNode* node;
-    node = malloc(sizeof(struct LabyrintheNode));
+    struct LabyrintheNode* node = LabyrintheNode_Create();
 
-    node->north = NULL;
-    node->south = NULL;
-    node->east = NULL;
-    node->west = NULL;
-    node->visited = false;
     node->x = x;
     node->y = y;
     node->travel_cost = travel_cost;
@@ -39,4 +34,20 @@ void LabyrintheNode_Destroy(struct LabyrintheNode* node) {
     if(node->west != NULL) LabyrintheNode_Destroy(node->west);
 
     free(node);
+}
+
+struct LabyrintheNode* LabyrintheNode_Get_labyrinthe_node_at_coords(ListNode* list, int x, int y)
+{
+    int i = 0;
+    struct LabyrintheNode* current = list->nodeTab[i];
+
+    while(current != NULL)
+    {
+        if(current->x == x && current->y == y) return current;
+
+        i++;
+        current = list->nodeTab[i];
+    }
+
+    return NULL;
 }
