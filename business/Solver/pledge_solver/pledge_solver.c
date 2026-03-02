@@ -9,6 +9,36 @@
 #include "../../../types.h"
 #include "../solver_utils.h"
 
+struct LabyrintheNode* getNodeInLeft(struct LabyrintheNode* currentNode, int direction) {
+    switch(direction) {
+    case 0:
+        return currentNode->west;
+    case 1:
+        return currentNode->north;
+    case 2:
+        return currentNode->east;
+    case 3:
+        return currentNode->south;
+    }
+
+    return NULL;
+}
+
+struct LabyrintheNode* getNodeInRigth(struct LabyrintheNode* currentNode, int direction) {
+    switch(direction) {
+    case 0:
+        return currentNode->east;
+    case 1:
+        return currentNode->south;
+    case 2:
+        return currentNode->west;
+    case 3:
+        return currentNode->north;
+    }
+
+    return NULL;
+}
+
 boolean getCurrentNodeLeft(struct LabyrintheNode* currentNode,int direction)
 {
     switch(direction)
@@ -45,7 +75,7 @@ boolean getWallInFront(struct LabyrintheNode* currentNode,int direction)
     {
         return true;
     }
-    if(getNodeInFront(currentNode,direction)->type == CELL)
+    if(getNodeInFront(currentNode,direction)->type != WALL)
     {
         return false;
     }
